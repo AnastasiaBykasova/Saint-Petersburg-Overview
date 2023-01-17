@@ -6,28 +6,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Создание и удаление</title>
-    <!--
-        Укажите свой API-ключ. Тестовый ключ НЕ БУДЕТ работать на других сайтах.
-        Получить ключ можно в Кабинете разработчика: https://developer.tech.yandex.ru/keys/
-    -->
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8187bf9-d435-41c6-8c4c-cdaefed6b329" type="text/javascript"></script>
-    <script src="js_files/map_leisure.js" type="text/javascript"></script>
-	<style>
-        body, html {
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-        }
-        #map {
-            width: 100%;
-            height: 90%;
-        }
-    </style>
+    
 </head>
 
 <body>
-    <div id="map"></div>
+    
+  <?=
+    $file="gostinicy.csv";
+    $csv= file_get_contents($file);
+    $array = array_map("str_getcsv", explode("\n", $csv));
+    $json = json_encode($array);
+    print_r($json);
+
+  ?>
+
+
+
 </body>
 
 </html>
