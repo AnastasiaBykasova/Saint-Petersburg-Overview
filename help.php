@@ -41,11 +41,6 @@
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
     </div>
 
     <section class="ftco-section ftco-degree-bg services-section img mx-md-5" style="background-image: url(images/bg_2.jpg);">

@@ -41,11 +41,6 @@
 
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
     </div>
 
 		<section class="ftco-section">
@@ -65,7 +60,7 @@
           	<div class="blog-entry justify-content-end">
               <div class="text">
                 <h3 class="heading"><a href="#">Выбрать, куда сходить</a></h3>
-                <a href="map_leisure.php" class="block-20 img" style="background-image: url('images/image_2.jpg');">
+                <a href="map.php" class="block-20 img" style="background-image: url('images/image_2.jpg');">
 	              </a>
                 <p>Ближайшие достопримечательности/музеи для выбранной гостиницы и маршрут к ним.</p>
               </div>

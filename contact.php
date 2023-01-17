@@ -40,11 +40,6 @@
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
     </div>
 
 		<section class="ftco-section contact-section">
@@ -86,35 +81,12 @@
               <div class="form-group">
                 <input type="text" name="message_subject" class="form-control" placeholder="Тема обращения">
               </div>
-
-              <!-- <div class="message_aim">
-                  <p>Какая цель обращения?</p>
-                  <p><input type="radio" name="type-input" value="1" <?php //if (isset($_GET['type-input']) & $_GET['type-input']='1'){$message_aim = "Вопрос";}?>>Вопрос</p>
-                  <p><input type="radio" name="type-input" value="2" <?php //if (isset($_GET['type-input']) & $_GET['type-input']='2'){$message_aim = "Предложение";}?>>Предложение</p>
-                  <p><input type="radio" name="type-input" value="3" <?php //if (isset($_GET['type-input']) & $_GET['type-input']='3'){$message_aim = "Жалоба";}?>>Жалоба</p>
-              </div> -->
-              <?php
-               
-              /*
-              if (isset($_GET['type-input'])) {
-                if ($_GET['type-input']='1') {
-                  $message_aim = "Вопрос";
-                }
-                else if ($_GET['type-input']='2') {
-                  $message_aim = "Предложение";
-                }
-                else if ($_GET['type-input']='3') {
-                  $message_aim = "Жалоба";
-                }
-              }*/
-              ?>
               <div class="form-group">
                 <textarea name="message_text" cols="30" rows="7" class="form-control" placeholder="Текст сообщения"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" formmethod=POST value="Отправить" class="btn btn-primary py-3 px-5">
               </div>
-              <p>Если Вы отправляете сообщение повторно, то предыдущее будет удалено</p>
             </form>
             <?php
               require "php_extra/message_db.php";
