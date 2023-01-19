@@ -1,59 +1,8 @@
-<?php
-//include "php_extra/db_connect.php";
-
-
-// $query = "SELECT hotel_koordinates FROM gostinicy LIMIT 10";
-// $result = mysqli_query($link, $query);
-// //$data_koor = [];
-// $kol_rows = mysqli_num_rows($result);
-
-
-// for ($i = 0; $i < $kol_rows; $i++) {
-//   $data_koor[$i] = 
-// }
-// while ($koor  = mysqli_fetch_array($result)) {
-//   $data_koor[] = $koor;
-// }
-
-// $stmt = mysqli_prepare($link, $query);
-// mysqli_stmt_execute($stmt);
-// mysqli_stmt_bind_result($stmt, $hotel_koordinates);
-// $koors = array();
-// while (mysqli_stmt_fetch($stmt)) {
-//     // $koors[] = array('hotel_koordinates' => $hotel_koordinates);
-//     $koors[] = $hotel_koordinates;
-// }
-// print_r($koors);
-
-// $pizza  = "кусок1 кусок22";
-// $pieces = explode(" ", $pizza);
-// echo $pieces[0]." ";
-// echo $pieces[1];
-
-// $str = "56.7";
-// $st_int = (float) $str;
-
-
-
-?>
-
-
-
-
-<!-- <script type='text/javascript'>
-      <?php
-      // $php_array = $koors;
-      // $js_array = json_encode($php_array);
-      // echo "var javascript_array = ". $js_array . ";\n";
-      ?>
-    </script> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Связаться с нами</title>
+  <title>Достопримечательности</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -128,9 +77,10 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
+            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
         </ul>
       </div>
     </div>
@@ -138,310 +88,163 @@
   </nav>
 
 
-
-
-  <?php
-  //include "php_extra/db_connect.php";
-  
-  // $hotel_name = [];
-  // $hotel_type = [];
-  // $hotel_address = [];
-  // $hotel_phone = [];
-  // $hotel_email = [];
-  // $hotel_site = [];
-  // $hotel_koords = [];
-  // $query = "SELECT hotel_koordinates FROM gostinicy";
-  // $result = mysqli_query($link, $query);
-  // while ($result1 = mysqli_fetch_array($result)){
-  //   $hotel_name[] = $result1["hotel_name"];
-  //   $hotel_type[] = $result1["hotel_type"];
-  //   $hotel_address[] = $result1["hotel_address"];
-  //   $hotel_phone[] = $result1["hotel_phone"];
-  //   $hotel_email[] = $result1["hotel_email"];
-  //   $hotel_site[] = $result1["hotel_site"];
-  //   $hotel_koords[] = $result1["hotel_koordinates"];
-  // }
-
-
-
-
-
-
-  // $arr_x = [];
-  // $arr_y = [];
-  // //include "dbconnect.php";
-  // $sql1 = mysqli_query($link, 'SELECT DISTINCT hotel_koord_x, hotel_koord_y FROM gostinicy;');
-  // while ($result1 = mysqli_fetch_array($sql1)){
-  //     $arr_x[] = (float)$result1["hotel_koord_x"];
-  //     $arr_y[] = (float)$result1["hotel_koord_y"];
-  // }
-  // print_r($arr_y);
-
-
-
-
-
-
-
-
-
-  //print_r($hotel_koords);
-  //print_r($koords[2]);
-  //print_r($koords);
-  // $separator = "\r\n";
-  // $f = fopen('data.json', 'w+');
-
-  // $json = file_get_contents('./json_file.json');
-  // $json = json_decode($json, true);
-  // // $json['name'] = 'Vasiluy';
-  
-  // // $newJsonString = json_encode($json);
-  // // file_put_contents('./json_file.json', $newJsonString);
-
-
-  // $line = strtok($json, $separator);
-  // while ($line !== false) {
-  //     # do something with $line
-  //     $json['id'] = '0';
-  
-  // $newJsonString = json_encode($json);
-  // file_put_contents('./json_file.json', $newJsonString);
-
-  //     $line = strtok( $separator );
-  // }
-
-//   public function sender(){
-//     $this->load->model('novaPoshta/novaPoshta');
-//     $api_key = $this->model_novaPoshta_novaPoshta->get_api();
-//     $key = ($api_key['api_key']);
-
-//     $json = '{
-//                 "apiKey":" ' . $key . '" ,
-//                 "modelName": "Counterparty",
-//                 "calledMethod": "getCounterparties",
-//                 "methodProperties": {
-//                     "CounterpartyProperty": "Sender",
-//                     "Page": "1"
-//                 }
-//             }';
-//     $sender = $this->sendRequest($json);
-
-//     return $sender;
-// } 
-
-
-// $json = file_get_contents('data.json');
-// $json = json_decode($json, true);
-// $json['id'] = '100';
-
-// $newJsonString = json_encode($json);
-// file_put_contents('data.json', $newJsonString);
-
-
-
-// $arr1 = [];
-// include "php_extra/db_connect.php";
-// $sql1 = mysqli_query($link, 'SELECT DISTINCT hotel_koordinates FROM gostinicy;');
-// while ($result1 = mysqli_fetch_array($sql1)){
-//     $arr1[] = $result1["hotel_koordinates"];
-// }
-                    
-
-
-
-  //print_r(count($arr_x));
-  //$f = fopen('data.txt', 'w+');
-  //$str_begin = "\"type\": \"FeatureCollection\", \"features\": [";
-  //$str_begin = "{'type': 'FeatureCollection','features: [";
-  
-  
-  // for ($i = 0; $i < count($arr_x); $i++) {
-  // }
-  //fwrite($f, $str_begin);
-
-  
-
-
-  //$f = fopen('data.txt', 'a');
-
-  // fwrite($f, 'Первая запись');
-  // fwrite($f, 'Вторая запись');
-  // fwrite($f, 'NHTNMZ');
-
-  // fwrite($f, ' запись');
-
-  //fclose($f);
-  
-
-
-
-
-
-
-
-    // Создаём файл и записываем в него строку 'Vasya'
-    //file_put_contents('data.txt', 'Vasya');
-
-    // Создаём пустой файл
-    // file_put_contents('data.txt', '');
-
-    # Если файла нет - создастся, если есть - удалит старые данные
-    // $f = fopen('data.txt', 'a');
-
-    // # Добавим что-нибудь в файл
-    // fwrite($f, 'Первая запись');
-
-    // # Добавим что-нибудь ещё
-    // fwrite($f, 'Вторая запись');
-    // fwrite($f, 'NHTNMZ');
-
-    // fwrite($f, ' запись');
-
-    // # Закроем соединение с файлом
-    // fclose($f);
-
-    // # Теперь в файле лежит текст "Первая записьВторая запись"
-
-  //include "php_extra/db_connect.php";
-    
-    
-    // $query = "SELECT hotel_region FROM gostinicy";
-    // $arr = [];
-    
-    // $sql1 = mysqli_query($link, $query);
-    // while ($result1 = mysqli_fetch_array($sql1)){
-    //     $arr[] = $result1["hotel_region"];
-    // }
-    // print_r($arr);
-
-  ?>
-
-
-
-
-
-  <!-- <div id="map_leisure" style="width: 600px; height: 400px"></div>
-
-    <div id="map_1"></div>
-    <input type="button" id="destroyButton" value="Удалить карту"/> -->
-
-
-
-
 <!--//! это код для карты -->
   <div id="map"></div>
 
   <script type="text/javascript">
-    ymaps.ready(init);
-    function init(){
-        var myMap = new ymaps.Map("map", {
-            center: [59.94506272, 30.09158751],
-            zoom: 10
-        }, {
-            // searchControlProvider: 'yandex#search'
-        }),
-        objectManager = new ymaps.ObjectManager({
-            // Чтобы метки начали кластеризоваться, выставляем опцию.
-            clusterize: true,
-            // ObjectManager принимает те же опции, что и кластеризатор.
-            gridSize: 32,
-            clusterDisableClickZoom: true
-        });
-        objectManager.objects.options.set('preset', 'islands#greenDotIcon');
-        objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
-        myMap.geoObjects.add(objectManager);
-        
-        <?php
+
+    // Функция ymaps.ready() будет вызвана, когда
+    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+
+    <?php
         include "php_extra/db_connect.php";
-        $query = "SELECT hotel_name, hotel_koord_x, hotel_koord_y FROM gostinicy";
-        $arr_x = [];
-        $arr_y = [];
+        $query = "SELECT hotel_name, hotel_type, hotel_region, hotel_site, hotel_koord_x, hotel_koord_y FROM gostinicy";
         $hotel_name = [];
+        $hotel_type = [];
         $hotel_region = [];
-        $sql1 = mysqli_query($link, $query);
-        while ($result1 = mysqli_fetch_array($sql1)){
-            $arr_x[] = (float)$result1["hotel_koord_x"];
-            $arr_y[] = (float)$result1["hotel_koord_y"];
-            $hotel_name[] = (string)$result1["hotel_name"];
-            //$hotel_region[] = (string)$result1["hotel_region"];
+        $hotel_site = [];
+        $hotel_koord_x = [];
+        $hotel_koord_y = [];
+        $sql = mysqli_query($link, $query);
+        while ($res = mysqli_fetch_array($sql)){
+            $hotel_name[] = $res["hotel_name"];
+            $hotel_type[] = (string)$res["hotel_type"];
+            $hotel_region[] = (string)$res["hotel_region"];
+            $hotel_site[] = (string)$res["hotel_site"];
+            $hotel_koord_x[] = (float)$res["hotel_koord_x"];
+            $hotel_koord_y[] = (float)$res["hotel_koord_y"];
         }
-        //print_r($arr_x);
-        ?>
+    ?>
 
-        // var coo1 =JSON.parse('<?=json_encode($arr_x)?>');
-        // var coo2 =JSON.parse('<?=json_encode($arr_y)?>');
-        // var hotel_name = JSON.parse('<?=json_encode($hotel_name)?>');
-        // var hotel_region = JSON.parse('<?=json_encode($hotel_region)?>');
-        // var coords=[], i, j;
-        // for (i=0; i<921; i++){
-        //     coords.push(i);
-        //     coords[i] = [];
-        // for (j=0; j<1; j++){
-        //     coords[i].push(coo1[i], coo2[i]);
-        // }
-        // }
-        var myGeoObjects = [];
-        for (var i = 0; i<coords.length; i++) {
-        myGeoObjects[i] = new ymaps.GeoObject({
-            geometry: {
-            type: "Point",
-            coordinates: coords[i]
-            }
-        });
-        }
-        var myClusterer = new ymaps.Clusterer();
+    
+    var hotel_type = JSON.parse('<?=json_encode($hotel_type)?>');
+    var hotel_region = JSON.parse('<?=json_encode($hotel_region)?>');
+    var hotel_site = JSON.parse('<?=json_encode($hotel_site)?>');
+    var hotel_koord_x = JSON.parse('<?=json_encode($hotel_koord_x)?>');
+    var hotel_koord_y = JSON.parse('<?=json_encode($hotel_koord_y)?>');
+    //document.write(hotel_koord_x);
+
+    // var koordinates = [], i, j;
+    // for (i=0; i<910; i++) {
+    //     koordinates.push(i);
+    //     koordinates[i] = [];
+    //     for (j=0; j<1; j++) {
+    //         koordinates[i].push(hotel_koord_x[i], hotel_koord_y[i]);
+    //     }
+    // }
+    // function onlyUnique(value, index, self) {
+    //   return self.indexOf(value) === index;
+    // }
+    // // var region_unique = hotel_region.filter(onlyUnique);
+    // // document.write(region_unique.sort());
+
+    // ymaps.ready(init);
+    // function init(){
+    //     // Создание карты.
+    //     var myMap = new ymaps.Map("map", {
+    //         center: [59.94506272, 30.09158751],
+    //         zoom: 9,
+    //         controls: []
+    //       // }, {
+    //       //   searchControlProvider: 'yandex#search'
+    //     });
+    //     var myClusterer = new ymaps.Clusterer();
+    //     for (var i = 0; i<koordinates.length; i++) {
+    //         console.log(koordinates[i][0]);
+    //         var coo = koordinates[i];
+    //         console.log(coo);
+    //         myPlacemark = new ymaps.Placemark([koordinates[i][0], koordinates[i][1]], {
+                
+    //             // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+    //             balloonContentHeader: hotel_type[i],
+    //             balloonContentBody: hotel_site[i],
+    //             balloonContentFooter: "<a href='#'>Официальный сайт</a>",
+    //             hintContent: hotel_region[i]
+    //         });
+    //         console.log(myPlacemark);
+    //         myMap.geoObjects.add(myPlacemark);
+    //         myClusterer.add(myPlacemark);
+    //     };
+        
+    //     myMap.geoObjects.add(myClusterer);
 
 
-        // for (var i = 0; i<coords.length; i++) {
-        //   console.log(coords[i][0]);
-        //   var coo = coords[i];
-        //   console.log(coo);
-        //   myPlacemark = new ymaps.Placemark([coords[i][0], coords[i][1]], {
-        //       // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
-        //       balloonContentHeader: hotel_region[i],
-        //       balloonContentBody: "hii",
-        //       balloonContentFooter: "<a href='blog.php'>Посмотреть животных</a>",
-        //       hintContent: hotel_region[i]
-        //   });
-        //   console.log(myPlacemark);
-        //   myMap.geoObjects.add(myPlacemark);
-        //   myClusterer.add(myPlacemark);
-        // };
-        myClusterer.add(myGeoObjects);
-        myMap.geoObjects.add(myClusterer);
+
+        
+// Функция ymaps.ready() будет вызвана, когда
+// загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+// var hotel_name = JSON.parse('[]');
+// var hotel_type = JSON.parse('["\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u043e\u0442\u0435\u043b\u044c","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430","\u043c\u0430\u043b\u043e\u0435 \u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u044f","\u043e\u0442\u0435\u043b\u044c","\u0433\u043e\u0441\u0442\u0438\u043d\u0438\u0446\u0430"]');
+// var hotel_region = JSON.parse('["\u041d\u0435\u0432\u0441\u043a\u0438\u0439","\u041f\u0435\u0442\u0440\u043e\u0434\u0432\u043e\u0440\u0446\u043e\u0432\u044b\u0439","\u0412\u044b\u0431\u043e\u0440\u0433\u0441\u043a\u0438\u0439","\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439","\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439","\u0410\u0434\u043c\u0438\u0440\u0430\u043b\u0442\u0435\u0439\u0441\u043a\u0438\u0439","\u041a\u0438\u0440\u043e\u0432\u0441\u043a\u0438\u0439","\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439","\u041f\u0435\u0442\u0440\u043e\u0433\u0440\u0430\u0434\u0441\u043a\u0438\u0439","\u041a\u0438\u0440\u043e\u0432\u0441\u043a\u0438\u0439","\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u044b\u0439"]');
+// var hotel_site = JSON.parse('["http:\/\/rktk.org\/rktk_new\/","http:\/\/www.pierhouse.ru\/","http:\/\/www.baltiyahotel.ru\/","http:\/\/mhotelspb.ru\/","www.ibis.com\/6157","http:\/\/azimuthotels.com\/","http:\/\/www.aliot-spb.ru","http:\/\/anabel.ru\/","http:\/\/www.andersenhotel.ru\/","http:\/\/www.annhotel.ru\/","http:\/\/www.asteria.ru\/"]');
+// var hotel_koord_x = JSON.parse('[59.888284,59.920853,59.970186,59.932919,59.911317,59.914953,59.882939,59.932518,59.973118,59.912409]');
+// var hotel_koord_y = JSON.parse('[30.463021,29.777759,30.33926,30.334239,30.347911,30.29518,30.267907,30.35172,30.306804,30.259759]');
+//document.write(hotel_koord_x);
+var koordinates = [], i, j;
+for (i = 0; i < hotel_koord_y.length; i++) {
+    koordinates.push(i);
+    koordinates[i] = [];
+    for (j = 0; j < 1; j++) {
+        koordinates[i].push(hotel_koord_x[i], hotel_koord_y[i]);
     }
+}
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+// var region_unique = hotel_region.filter(onlyUnique);
+// document.write(region_unique.sort());
+ymaps.ready(init);
+function init() {
+    // Создание карты.
+    var myMap = new ymaps.Map("map", {
+        center: [59.94506272, 30.09158751],
+        zoom: 9,
+        controls: []
+        // }, {
+        //   searchControlProvider: 'yandex#search'
+    });
+    var go_list = {
+        "type": "FeatureCollection",
+        "features": []
+    }
+    var objectManager = new ymaps.ObjectManager({
+        clusterize: true
+    });
+    var currentId = 0;
+
+    for (var i = 0; i < koordinates.length; i++) {
+        var coo = koordinates[i];
+        var GO = {
+            type: 'Feature',
+            id: currentId++,
+            geometry: {
+                type: 'Point',
+                coordinates: koordinates[i]
+            },
+            properties: {
+                hintContent: hotel_region[i],
+                balloonContentHeader: hotel_type[i],
+                balloonContentBody: hotel_site[i],
+                balloonContentFooter: "<a href='#'>Официальный сайт</a>",
+                //clusterCaption: "<strong><s>Еще</s> одна</strong>"
+            }
+        }
+        go_list.features.push(GO);
+    }
+
+    //console.log(go_list);
+    objectManager.add(go_list);
+  
+    myMap.geoObjects.add(objectManager);
+
+}
+
+            
+
+    
+    
   </script>
 
-
-
-
-
-  <!-- <div class="col-md-12 d-flex ftco-animate">
-        <div class="blog-entry justify-content-end">
-            <div class="text">
-            <div id="map"></div>
-            </div>
-        </div>
-    </div> -->
-
-
-
-
-  <?php
-  // $arr_x = [];
-  // $arr_y = [];
-  // include "php_extra/db_connect.php";
-  // // $result = "SELECT SPLIT_STR(hotel_koordinates, ',', '1') as hotel_koord_x,
-  // // SPLIT_STR(hotel_koordinates, ',', '2') as hotel_koord_y FROM gostinicy";
-
-
-  // $sql1 = mysqli_query($link, $result);
-  // while ($result1 = mysqli_fetch_array($sql1)){
-  //     $arr_x[] = (float)$result1["hotel_koord_x"];
-  //     $arr_y[] = (float)$result1["hotel_koord_y"];
-  // }
-  // echo $arr_x;
-  ?>
 
 
 
