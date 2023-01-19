@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Связаться с нами</title>
+    <title>Регистрация</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -29,10 +29,10 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item active"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	          <li class="nav-item active"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -45,52 +45,25 @@
 
 		<section class="ftco-section contact-section">
       <div class="container">
-        <div class="row d-flex mb-5 contact-info justify-content-center">
-        	<div class="col-md-8">
-        		<div class="row mb-5">
-		          <div class="col-md-4 text-center py-4">
-		          	<div class="icon">
-		          		<span class="icon-map-o"></span>
-		          	</div>
-		            <p><span>Адрес:</span>Москва, Россия</p>
-		          </div>
-		          <div class="col-md-4 text-center border-height py-4">
-		          	<div class="icon">
-		          		<span class="icon-mobile-phone"></span>
-		          	</div>
-		            <p><span>Телефон:</span> <a href="tel://1234567920">+79261045260</a></p>
-		          </div>
-		          <div class="col-md-4 text-center py-4">
-		          	<div class="icon">
-		          		<span class="icon-envelope-o"></span>
-		          	</div>
-		            <p><span>Email:</span> <a href="mailto:nastybykasova@gmail.com">nastybykasova@gmail.com</a></p>
-		          </div>
-		        </div>
-          </div>
-        </div>
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Если у Вас остались вопросы,<br>отправьте нам сообщение</h2>
+          	<h2 class="text-center">Регистрация</h2>
             <form action="#" class="bg-light p-5 contact-form">
               <div class="form-group">
-                <input type="text" name="message_name" class="form-control" placeholder="Имя">
+                <input type="text" name="regist_name" class="form-control" placeholder="Имя">
               </div>
               <div class="form-group">
-                <input type="text" name="message_email" class="form-control" placeholder="Email">
+                <input type="text" name="regist_email" class="form-control" placeholder="Email">
               </div>
               <div class="form-group">
-                <input type="text" name="message_subject" class="form-control" placeholder="Тема обращения">
+                <input type="password" name="regist_password" class="form-control" placeholder="Пароль">
               </div>
               <div class="form-group">
-                <textarea name="message_text" cols="30" rows="7" class="form-control" placeholder="Текст сообщения"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
+                <input type="submit" formmethod=POST value="Отправить" class="btn btn-primary py-3 px-5">
               </div>
             </form>
             <?php
-              require "php_extra/message_db.php";
+              require "php_extra/regist.php";
             ?>
           </div>
         </div>
