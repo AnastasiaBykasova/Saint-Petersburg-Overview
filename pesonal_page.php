@@ -45,9 +45,11 @@
     </div>
 
 		<section class="ftco-section contact-section">
-            <p>Выбранная гостиница</p>
-            <p>Избранные достопримечательности</p>
-            <p>Избранные музеи</p>
+      <div class="elements-chosen">
+        <p>Выбранная гостиница</p>
+        <p>Избранные достопримечательности</p>
+        <p>Избранные музеи</p>
+      </div>
         </section>
 
     <footer class="ftco-footer ftco-section">

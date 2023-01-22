@@ -3762,7 +3762,9 @@ input[type="button"].btn-block {
   margin-bottom: 10px;
   float: left;
 }
-
+.elements-chosen {
+  margin-left: 30px;
+}
 .sourse-list {
   margin-bottom: 20px;
   margin-top: 20px;

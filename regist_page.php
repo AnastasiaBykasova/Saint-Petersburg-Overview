@@ -49,23 +49,28 @@
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
           	<h2 class="text-center">Регистрация</h2>
-            <form formmethod=POST action="#" class="bg-light p-5 contact-form">
-              <div class="form-group">
-                <input type="text" name="regist_name" class="form-control" placeholder="Имя">
+            <?php
+                include "php_extra/regist.php";
+                  // include "php_extra/db_connect.php";
+                  // $query = "INSERT INTO users SET user_name = '".$_POST['regist_name']."', 
+                  // user_email = '".$_POST['regist_email']."', user_password = '".$_POST['regist_password']."'";
+                  // $result = mysqli_query($link, $query);
+              ?>
+            <form formmethod=POST action="#" class="bg-light2 p-52 contact-form2">
+              <div class="form-group2">
+                <input type="text" name="regist_name" class="form-control2" placeholder="Имя">
               </div>
-              <div class="form-group">
-                <input type="text" name="regist_email" class="form-control" placeholder="Email">
+              <div class="form-group2">
+                <input type="text" name="regist_email" class="form-control2" placeholder="Email">
               </div>
-              <div class="form-group">
-                <input type="password" name="regist_password" class="form-control" placeholder="Пароль">
+              <div class="form-group2">
+                <input type="password" name="regist_password" class="form-control2" placeholder="Пароль">
               </div>
-              <div class="form-group">
-                <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
+              <div class="form-group2">
+                <input type="submit" value="Отправить" class="btn2 btn-primary2 py-32 px-52">
               </div>
             </form>
-            <?php
-              require "php_extra/regist.php";
-            ?>
+            
           </div>
         </div>
       </div>
