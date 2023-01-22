@@ -24,12 +24,13 @@
 	      <img src="images/logo_black.png" height="50">
 	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
+	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="ztrying.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item active"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -72,7 +73,7 @@
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
           	<h2 class="text-center">Если у Вас остались вопросы,<br>отправьте нам сообщение</h2>
-            <form action="#" class="bg-light p-5 contact-form">
+            <form formmethod=POST action="#" class="bg-light p-5 contact-form">
               <div class="form-group">
                 <input type="text" name="message_name" class="form-control" placeholder="Имя">
               </div>
@@ -86,11 +87,14 @@
                 <textarea name="message_text" cols="30" rows="7" class="form-control" placeholder="Текст сообщения"></textarea>
               </div>
               <div class="form-group">
+                <!-- <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5"> -->
+                <!-- <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button> -->
                 <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
               </div>
             </form>
             <?php
-              require "php_extra/message_db.php";
+              // require "php_extra/message_db.php";
+              
             ?>
           </div>
         </div>
@@ -138,6 +142,12 @@
         <hr class="hr-line">
         <div class="row">
           <div class="col-md-12 text-center">
+            <div class="sourse-list">
+              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            </div>
             <p>Copyright &copy; А.С.Быкасова, <script>document.write(new Date().getFullYear());</script></p>
           </div>
         </div>

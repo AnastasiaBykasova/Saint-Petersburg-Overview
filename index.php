@@ -25,11 +25,12 @@
         <img src="images/logo_black.png" height="50">
 	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
+	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
@@ -129,8 +130,8 @@
                 <h6>«Организация досуга в Санкт-Петербурге»</h6>
                 <h3 class="heading"><a>Идея проекта:</a></h3>
                 <h6>Посредством использования открытых наборов данных Санкт-Петербурга категории «Туризм и отдых»: «Гостиницы», «Достопримечательности» (включает в себя мосты, парки, памятники, природные объекты), «Музеи»
-                  создано веб-приложение, обрабатывающее 2 варианта выбора пользователя:<ol><li>показываются гостиницы Санкт-Петербурга, которые расположены в районах с наибольшим количеством близлежащих достопримечательностей (когда человек планирует отправиться в Питер с целью осмотра достопримечательностей и выбирает подходящую гостиницу);</li>
-                  <li>показываются ближайшие достопримечательности/музеи для выбранной пользователем гостиницы и маршрут к ним (когда человек приехал в гостиницу и выбирает, куда пойти).</li></ol></h6>
+                  создано веб-приложение, обрабатывающее 2 варианта выбора пользователя:<ol><li>показываются гостиницы Санкт-Петербурга, которые расположены в районах с наибольшим количеством близлежащих достопримечательностей;</li>
+                  <li>показываются ближайшие достопримечательности/музеи для выбранной пользователем гостиницы и маршрут к ним.</li></ol></h6>
                 <h3 class="heading"><a>Название проекта:</a></h3>
                 <h6>«ПитерOverview»</h6>
               </div>
@@ -181,6 +182,12 @@
         <hr class="hr-line">
         <div class="row">
           <div class="col-md-12 text-center">
+            <div class="sourse-list">
+              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            </div>
             <p>Copyright &copy; А.С.Быкасова, <script>document.write(new Date().getFullYear());</script></p>
           </div>
         </div>

@@ -72,11 +72,12 @@
       <img src="images/logo_black.png" height="50">
       <a class="navbar-brand" href="index.php">Главная</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="oi oi-menu"></span> Menu
+        <span class="oi oi-menu"></span> Меню
       </button>
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
             <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
@@ -139,7 +140,7 @@
 
     <?php
         include "php_extra/db_connect.php";
-        $query_museum = "SELECT museum_name, museum_type, museum_region, museum_site, museum_email, museum_koord_x, museum_koord_y FROM muzzz";
+        $query_museum = "SELECT museum_name, museum_type, museum_region, museum_site, museum_email, museum_koord_x, museum_koord_y FROM muzei";
         $museum_name = [];
         $museum_type = [];
         $museum_region = [];
@@ -149,7 +150,7 @@
         $museum_koord_y = [];
         $sql_museum = mysqli_query($link, $query_museum);
         while ($res_museum = mysqli_fetch_array($sql_museum)){
-            // $museum_name[] = (string)$res_museum["museum_name"];
+            $museum_name[] = (string)$res_museum["museum_name"];
             $museum_type[] = (string)$res_museum["museum_type"];
             $museum_region[] = (string)$res_museum["museum_region"];
             $museum_site[] = (string)$res_museum["museum_site"];
@@ -168,27 +169,167 @@
 
 
     var koordinates_museum = [], i, j;
-    for (i=0; i<2; i++) {
+    for (i=0; i<214; i++) {
         koordinates_museum.push(i);
         koordinates_museum[i] = [];
         for (j=0; j<1; j++) {
             koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
         }
     }
+
+
+
+    <?php
+        include "php_extra/db_connect.php";
+        $query_object = "SELECT object_name, object_type, object_site, object_email, object_koord_x, object_koord_y FROM dostoprimechatelnosti";
+        $object_name = [];
+        $object_name_short = [];
+        $object_type = [];
+        $object_site = [];
+        $object_email = [];
+        $object_koord_x = [];
+        $object_koord_y = [];
+        $sql_object = mysqli_query($link, $query_object);
+        while ($res_object = mysqli_fetch_array($sql_object)){
+            $object_name[] = (string)$res_object["object_name"];
+            $object_name_short[] = (string)$res_object["object_name_short"];
+            $object_type[] = (string)$res_object["object_type"];
+            $object_site[] = (string)$res_object["object_site"];
+            $object_email[] = (string)$res_object["object_email"];
+            $object_koord_x[] = (float)$res_object["object_koord_x"];
+            $object_koord_y[] = (float)$res_object["object_koord_y"];
+        }  
+    ?>
+    var object_name = JSON.parse('<?=json_encode($object_name)?>');
+    var object_name_short = JSON.parse('<?=json_encode($object_name_short)?>');
+    var object_type = JSON.parse('<?=json_encode($object_type)?>');
+    var object_site = JSON.parse('<?=json_encode($object_site)?>');
+    var object_email = JSON.parse('<?=json_encode($object_email)?>');
+    var object_koord_x = JSON.parse('<?=json_encode($object_koord_x)?>');
+    var object_koord_y = JSON.parse('<?=json_encode($object_koord_y)?>');
+    
+    // document.querySelector("#show_regions").onclick = function(){
+      //alert("Вы нажали на кнопку");
+
+
+      var koordinates_object = [], i, j;
+      for (i=0; i<136; i++) {
+          koordinates_object.push(i);
+          koordinates_object[i] = [];
+          for (j=0; j<1; j++) {
+              koordinates_object[i].push(object_koord_x[i], object_koord_y[i]);
+          }
+      }
+
     
 
 
 
     ymaps.ready(init);
     function init(){
-        // Создание карты.
-        var myMap = new ymaps.Map("map", {
+
+      var pointA = [59.888284,30.463021],
+        pointB = [59.92265733, 30.288223059],
+        /**
+         * Создаем мультимаршрут.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRoute.xml
+         */
+        multiRoute = new ymaps.multiRouter.MultiRoute({
+            referencePoints: [
+                pointA,
+                pointB
+            ],
+            params: {
+                //Тип маршрутизации - пешеходная маршрутизация.
+                routingMode: 'pedestrian'
+            }
+        }, {
+            // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+            boundsAutoApply: true
+        });
+
+    // Создаем кнопку.
+    var changePointsButton = new ymaps.control.Button({
+        data: {content: "Поменять местами точки А и В"},
+        options: {selectOnClick: true}
+    });
+
+    // Объявляем обработчики для кнопки.
+    changePointsButton.events.add('select', function () {
+        multiRoute.model.setReferencePoints([pointB, pointA]);
+    });
+
+    changePointsButton.events.add('deselect', function () {
+        multiRoute.model.setReferencePoints([pointA, pointB]);
+    });
+
+    // Создаем карту с добавленной на нее кнопкой.
+    // var myMap = new ymaps.Map('map', {
+    //     center: [55.739625, 37.54120],
+    //     zoom: 12,
+    //     controls: [changePointsButton]
+    // }, {
+    //     buttonMaxWidth: 300
+    // });
+
+    // Создание карты.
+    var myMap = new ymaps.Map("map", {
             center: [59.94506272, 30.09158751],
             zoom: 9,
-            //controls: []
+            // controls: ['zoomControl']
+            controls: [changePointsButton, 'zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl', 'routeButtonControl']
+
           // }, {
           //   searchControlProvider: 'yandex#search'
         });
+        // hotelButton = new ymaps.control.Button("Кнопка");
+        // map.controls.add(hotelButton, {float: 'right'});
+
+    // Добавляем мультимаршрут на карту.
+    myMap.geoObjects.add(multiRoute);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Создание карты.
+        // var myMap = new ymaps.Map("map", {
+        //     center: [59.94506272, 30.09158751],
+        //     zoom: 9,
+        //     // controls: ['zoomControl']
+        //     controls: ['zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl', 'routeButtonControl']
+
+        //   // }, {
+        //   //   searchControlProvider: 'yandex#search'
+        // });
+        // hotelButton = new ymaps.control.Button("Кнопка");
+        // map.controls.add(hotelButton, {float: 'right'});
+
+
+
+        // hotelButton = new ymaps.control.Button({
+        //   data: {
+        //     content: "Кнопка",
+        //     image: "images/hotel_loc.png"
+        //   }});
+        // map.controls.add(hotelButton, {float: 'right'});
+
+
+
         // for (var i = 0; i<koordinates_hotel.length; i++) {
         //   var coo = koordinates_hotel[i];
         //   myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]]);
@@ -235,14 +376,12 @@
             iconImageOffset: [-5, -38]
         }),
 
-
-  
           console.log(myPlacemark);
           myMap.geoObjects.add(myPlacemark);
           myClusterer.add(myPlacemark);
         };
         
-        myMap.geoObjects.add(myClusterer);
+        // myMap.geoObjects.add(myClusterer);
 
 
 
@@ -277,20 +416,50 @@
             iconImageOffset: [-5, -38]
         }),
 
-
-
-
-
           console.log(myPlacemark);
           myMap.geoObjects.add(myPlacemark);
           myClusterer2.add(myPlacemark);
         };
         
-        myMap.geoObjects.add(myClusterer2);
+        // myMap.geoObjects.add(myClusterer2);
 
 
 
 
+        var myClusterer3 = new ymaps.Clusterer();
+        for (var i = 0; i<koordinates_object.length; i++) {
+          console.log(koordinates_object[i][0]);
+          var coo = koordinates_object[i];
+          console.log(coo);
+          myPlacemark3 = new ymaps.Placemark([koordinates_object[i][0], koordinates_object[i][1]], {
+              // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+              balloonContentHeader: object_name[i],
+              balloonContentBody: [object_type[i], '<br/>', object_email[i], '<br/>' ].join(''),
+              balloonContentFooter: object_site[i],
+              //clusterCaption: "<strong><s>Еще</s> одна</strong>",
+              hintContent: object_name_short[i] },
+            // }, {
+            //   preset: 'islands#redIcon'
+            // }, 
+            {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#image',
+            // Своё изображение иконки метки.
+            iconImageHref: 'images/leisure_loc.png',
+            // Размеры метки.
+            iconImageSize: [30, 30],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-5, -38]
+        }),
+          console.log(myPlacemark3);
+          myMap.geoObjects.add(myPlacemark3);
+          myClusterer3.add(myPlacemark3);
+
+        };
+        // myMap.geoObjects.add(myClusterer3);
+        
 
 
 
@@ -365,11 +534,18 @@
     // }
 
 
+    // Создаем коллекцию.
+    
     
         
     }
 
     
+
+
+
+
+
     
   </script>
 
@@ -424,6 +600,12 @@
       <hr class="hr-line">
       <div class="row">
         <div class="col-md-12 text-center">
+          <div class="sourse-list">
+              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            </div>
           <p>Copyright &copy; А.С.Быкасова, <script>
               document.write(new Date().getFullYear());
             </script>

@@ -1,58 +1,7 @@
-
-
 <!DOCTYPE html>
-
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Создание и удаление</title>
-    
-</head>
-
-<body>
-    
-  <?=
-    $file="gostinicy.csv";
-    $csv= file_get_contents($file);
-    $array = array_map("str_getcsv", explode("\n", $csv));
-    $json = json_encode($array);
-    print_r($json);
-
-  ?>
-
-
-
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Связаться с нами</title>
+    <title>Авторизация</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -68,9 +17,6 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8187bf9-d435-41c6-8c4c-cdaefed6b329" type="text/javascript"></script>
-    <script src="js_files/map_leisure.js" type="text/javascript"></script>
   </head>
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -83,9 +29,11 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	          <li class="nav-item active"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+                <li class="nav-item active"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
+                <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+                <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
+	            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+	            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -94,24 +42,13 @@
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
     </div>
 
-
-     <p>Карта Санкт-Петербурга</p>
-    <div id="map_leisure" style="width: 600px; height: 400px"></div>
-
-    <div id="map_1"></div>
-    <input type="button" id="destroyButton" value="Удалить карту"/>
-    
-
-
-
-
+		<section class="ftco-section contact-section">
+            <p>Выбранная гостиница</p>
+            <p>Избранные достопримечательности</p>
+            <p>Избранные музеи</p>
+        </section>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -154,6 +91,12 @@
         <hr class="hr-line">
         <div class="row">
           <div class="col-md-12 text-center">
+            <div class="sourse-list">
+              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            </div>
             <p>Copyright &copy; А.С.Быкасова, <script>document.write(new Date().getFullYear());</script></p>
           </div>
         </div>
@@ -177,9 +120,7 @@
   <script src="js/bootstrap-datepicker.js"></script>
   <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
     
   </body>
-</html> -->
+</html>

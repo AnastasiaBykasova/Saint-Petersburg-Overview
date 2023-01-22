@@ -21,12 +21,7 @@ function init () {
     objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
     myMap.geoObjects.add(objectManager);
 
-    $.ajax({
-        url: "data.json"
-    }).done(function(data) {
-        objectManager.add(data);
-    });
-
+    
 
 
 

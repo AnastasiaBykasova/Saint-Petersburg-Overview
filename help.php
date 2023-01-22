@@ -25,11 +25,12 @@
 	      <img src="images/logo_black.png" height="50">
 	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
+	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item active"><a href="help.php" class="nav-link">Помощь</a></li>
@@ -139,6 +140,12 @@
         <hr class="hr-line">
         <div class="row">
           <div class="col-md-12 text-center">
+            <div class="sourse-list">
+              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            </div>
             <p>Copyright &copy; А.С.Быкасова, <script>document.write(new Date().getFullYear());</script></p>
           </div>
         </div>
