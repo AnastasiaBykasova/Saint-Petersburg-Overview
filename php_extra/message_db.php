@@ -48,27 +48,37 @@
     // $query = "INSERT INTO messages SET message_name='".$_POST['message_name']."', message_email='".$_POST['message_email']."', 
     // message_subject='".$_POST['message_subject']."', message_text='".$_POST['message_text']."', message_day='$day_today', message_time='$day_today'"; 
 
-    session_start();
-    if (isset($_POST['message_name']) && isset($_POST['message_email']) && isset($_POST['message_subject']) && isset($_POST['message_text'])) {
-        if (!empty($_POST)) {
-            // сохраняем в базу
+    //!
+    // session_start();
+    // if (isset($_POST['message_name']) && isset($_POST['message_email']) && isset($_POST['message_subject']) && isset($_POST['message_text'])) {
+    //     if (!empty($_POST)) {
+    //         // сохраняем в базу
             
-            $query = "INSERT INTO messages SET message_name='".$_POST['message_name']."', message_email='".$_POST['message_email']."', 
-            message_subject='".$_POST['message_subject']."', message_text='".$_POST['message_text']."', message_day='$day_today', message_time='$day_today'"; 
+    //         $query = "INSERT INTO messages SET message_name='".$_POST['message_name']."', message_email='".$_POST['message_email']."', 
+    //         message_subject='".$_POST['message_subject']."', message_text='".$_POST['message_text']."', message_day='$day_today', message_time='$day_today'"; 
 
-            $_SESSION['flash'] = 'форма успешно сохранена';
-            header('Location: ../contact.php');
-        }
-        else {
-			$_SESSION['flash'] = 'форма не прошла валидацию';
-		}
+    //         $_SESSION['flash'] = 'форма успешно сохранена';
+    //         header('Location: ../contact.php');
+    //     }
+    //     else {
+	// 		$_SESSION['flash'] = 'форма не прошла валидацию';
+	// 	}
+    // }
+
+    // if (isset($_SESSION['flash'])) {
+	// 	echo $_SESSION['flash'];
+	// 	unset($_SESSION['flash']);
+    //     print_r("сохранено успешно");
+	// }
+
+
+
+
+    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
+        $query = "INSERT INTO messages (message_name, message_email, message_subject, message_text, message_day, message_time) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}', '{$day_today}', '{$day_today}')"; 
+
+        $result = mysqli_query($link, $query);
     }
-
-    if (isset($_SESSION['flash'])) {
-		echo $_SESSION['flash'];
-		unset($_SESSION['flash']);
-        print_r("сохранено успешно");
-	}
 
 
 

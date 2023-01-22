@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Авторизация</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-
-		<section class="ftco-section contact-section">
-      <div class="container">
-        <div class="row block-9 justify-content-center mb-5">
-          <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Авторизация</h2>
-            <form formmethod=POST action="#" class="bg-light p-5 contact-form">
-              <div class="form-group">
-                <input type="text" name="user_email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="password" name="user_name" class="form-control" placeholder="Пароль">
-              </div>
-              <div class="form-group">
-                <input type="submit" formmethod=POST value="Отправить" class="btn btn-primary py-3 px-5">
-              </div>
-              <p class="if_no_acc">Нет аккаунта? <a href="regist_page.php">Зарегистрироваться</a></p>
-            </form>
-           <?php 
-           require "php_extra/auth.php";
-           ?>
-          
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-</body>
-</html>
+<form class="form-contact contact_form" action="" method="post" id="contactForm" novalidate="novalidate">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите ФИО'">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите email'">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите тему'">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Напишите сообщение'"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="button">Отправить</button>
+                            </div>
+                        </form>
+                        <?php
+                        $day_today = date("Y-m-d H:i:s"); //текущее время
+                        include "php_extra/db_connect.php";
+                        if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
+                            $query = "INSERT INTO messages (message_name, message_email, message_subject, message_text, message_day, message_time) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}', '{$day_today}', '{$day_today}')"; 
+                    
+                            $result = mysqli_query($link, $query);
+                        }
+                        ?>

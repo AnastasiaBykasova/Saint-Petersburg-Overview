@@ -73,28 +73,39 @@
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
           	<h2 class="text-center">Если у Вас остались вопросы,<br>отправьте нам сообщение</h2>
-            <form formmethod=POST action="#" class="bg-light p-5 contact-form">
+            <form class="bg-light p-5 contact-form" action="" method="post" id="contactForm" novalidate="novalidate">
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control valid" name="name" id="name" type="text" placeholder="Имя">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control" name="subject" id="subject" type="text" placeholder="Тема обращения">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Текст сообщения"></textarea>
+                      </div>
+                  </div>
               <div class="form-group">
-                <input type="text" name="message_name" class="form-control" placeholder="Имя">
+                  <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
               </div>
-              <div class="form-group">
-                <input type="text" name="message_email" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="text" name="message_subject" class="form-control" placeholder="Тема обращения">
-              </div>
-              <div class="form-group">
-                <textarea name="message_text" cols="30" rows="7" class="form-control" placeholder="Текст сообщения"></textarea>
-              </div>
-              <div class="form-group">
-                <!-- <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5"> -->
-                <!-- <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button> -->
-                <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
+          </form>
             <?php
-              // require "php_extra/message_db.php";
-              
+            $day_today = date("Y-m-d H:i:s"); //текущее время
+            include "php_extra/db_connect.php";
+            if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
+                $query = "INSERT INTO messages (message_name, message_email, message_subject, message_text, message_day, message_time) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}', '{$day_today}', '{$day_today}')"; 
+        
+                $result = mysqli_query($link, $query);
+            }
             ?>
           </div>
         </div>
