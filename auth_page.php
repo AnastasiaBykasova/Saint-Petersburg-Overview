@@ -22,22 +22,22 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <img src="images/logo_black.png" height="50">
-	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
+            <li class="nav-item"><a href="ztrying.php.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item active"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
-	        </ul>
+            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+          </ul>
 	      </div>
 	    </div>
-      <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a>
+      <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
 	  </nav>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -54,15 +54,22 @@
                 <input type="text" name="user_email" class="form-control" placeholder="Email">
               </div>
               <div class="form-group">
-                <input type="password" name="user_name" class="form-control" placeholder="Пароль">
+                <input type="password" name="user_password" class="form-control" placeholder="Пароль">
               </div>
               <div class="form-group">
                 <input type="submit" formmethod=POST value="Отправить" class="btn btn-primary py-3 px-5">
               </div>
               <p class="if_no_acc">Нет аккаунта? <a href="regist_page.php">Зарегистрироваться</a></p>
             </form>
-           
-          
+            <?php
+              require "php_extra/auth.php";
+              // if (!empty($_SESSION['auth'])) {
+              //   echo "Авторизация прошла успешно";
+              // }
+              // if (empty($_SESSION['auth'])) {
+              //   echo '<p class="auth_error">'."Данные введены неверно".'</p>';
+              // }
+            ?>
           </div>
         </div>
       </div>

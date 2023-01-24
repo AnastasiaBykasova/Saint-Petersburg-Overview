@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Регистрация</title>
+    <title>Связаться с нами</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -22,22 +22,22 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <img src="images/logo_black.png" height="50">
-	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
-            <li class="nav-item active"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
+            <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+	          <li class="nav-item active"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
 	        </ul>
 	      </div>
 	    </div>
-      <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a>
+      <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
 	  </nav>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -46,31 +46,56 @@
 
 		<section class="ftco-section contact-section">
       <div class="container">
+        <div class="row d-flex mb-5 contact-info justify-content-center">
+        	<div class="col-md-8">
+        		<div class="row mb-5">
+		          <div class="col-md-4 text-center py-4">
+		          	<div class="icon">
+		          		<span class="icon-map-o"></span>
+		          	</div>
+		            <p><span>Адрес:</span>Москва, Россия</p>
+		          </div>
+		          <div class="col-md-4 text-center border-height py-4">
+		          	<div class="icon">
+		          		<span class="icon-mobile-phone"></span>
+		          	</div>
+		            <p><span>Телефон:</span> <a href="tel://1234567920">+79261045260</a></p>
+		          </div>
+		          <div class="col-md-4 text-center py-4">
+		          	<div class="icon">
+		          		<span class="icon-envelope-o"></span>
+		          	</div>
+		            <p><span>Email:</span> <a href="mailto:nastybykasova@gmail.com">nastybykasova@gmail.com</a></p>
+		          </div>
+		        </div>
+          </div>
+        </div>
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Регистрация</h2>
+          	<h2 class="text-center">Если у Вас остались вопросы,<br>отправьте нам сообщение</h2>
+            <form class="bg-light p-5 contact-form" action="" method="post" id="contactForm" novalidate="novalidate">
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control valid" autocomplete="off" name="name" id="name" type="text" placeholder="Имя">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control valid" autocomplete="off" name="email" id="email" type="email" placeholder="Email">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Пароль">
+                      </div>
+                  </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
+              </div>
+          </form>
             <?php
-                include "php_extra/regist.php";
-                  // include "php_extra/db_connect.php";
-                  // $query = "INSERT INTO users SET user_name = '".$_POST['regist_name']."', 
-                  // user_email = '".$_POST['regist_email']."', user_password = '".$_POST['regist_password']."'";
-                  // $result = mysqli_query($link, $query);
-              ?>
-            <form formmethod=POST action="#" class="bg-light2 p-52 contact-form2">
-              <div class="form-group2">
-                <input type="text" name="regist_name" class="form-control2" placeholder="Имя">
-              </div>
-              <div class="form-group2">
-                <input type="text" name="regist_email" class="form-control2" placeholder="Email">
-              </div>
-              <div class="form-group2">
-                <input type="password" name="regist_password" class="form-control2" placeholder="Пароль">
-              </div>
-              <div class="form-group2">
-                <input type="submit" value="Отправить" class="btn2 btn-primary2 py-32 px-52">
-              </div>
-            </form>
-            
+              require "php_extra/regist.php";
+            ?>
           </div>
         </div>
       </div>

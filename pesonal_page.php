@@ -29,11 +29,11 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
-                <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
-                <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-	            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+            <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
+            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
 	        </ul>
 	      </div>
 	    </div>

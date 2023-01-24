@@ -23,13 +23,13 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
         <img src="images/logo_black.png" height="50">
-	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a href="index.php" class="nav-link">Главная</a></li>
             <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
@@ -38,7 +38,7 @@
 	        </ul>
 	      </div>
 	    </div>
-      <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a>
+      <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
 	  </nav>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -77,7 +77,7 @@
           <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
             <div class="block-18 py-4 mb-4">
               <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="31">0</strong>
+                <strong class="number">31</strong>
                 <span>тыс. гектаров —<br>площадь зеленых насаждений</span>
               </div>
             </div>
@@ -85,16 +85,8 @@
           <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
             <div class="block-18 py-4 mb-4">
               <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="200">0</strong>
+                <strong class="number">200</strong>
                 <span>музеев <br>и их филиалов</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 py-4 mb-4">
-              <div class="text text-border d-flex align-items-center">
-                <strong class="number" data-number="100">0</strong>
-                <span>театров</span>
               </div>
             </div>
           </div>
@@ -102,7 +94,7 @@
     	</div>
     </section>
 
-    <section class="ftco-section ftco-no-pt" id="about_course_project">
+    <!-- <section class="ftco-section ftco-no-pt" id="about_course_project">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -139,7 +131,7 @@
           </div>
         </div>
       </div>
-    </section>		
+    </section>		 -->
 
     <footer class="ftco-footer ftco-section">
       <div class="container">

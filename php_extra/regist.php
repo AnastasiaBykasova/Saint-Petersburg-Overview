@@ -1,9 +1,9 @@
 <?php
-    include "db_connect.php";
-    
-    $query = "INSERT INTO users SET user_name = '".$_POST['regist_name']."', 
-    user_email = '".$_POST['regist_email']."', user_password = '".$_POST['regist_password']."'";
-    
-    $result = mysqli_query($link, $query);
+   
+   include "php_extra/db_connect.php";
+   if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+       $query = "INSERT INTO users (user_name, user_email, user_password) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['password']}')"; 
 
+       $result = mysqli_query($link, $query);
+   }
 ?>

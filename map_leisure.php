@@ -117,22 +117,21 @@
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <img src="images/logo_black.png" height="50">
-      <a class="navbar-brand" href="index.php">Главная</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Меню
       </button>
-
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
-            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
-            <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+          <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
+          <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+          <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+          <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
+          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
         </ul>
       </div>
     </div>
-    <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a>
+    <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
   </nav>
 
  
@@ -275,8 +274,6 @@
     
     // document.querySelector("#show_regions").onclick = function(){
       //alert("Вы нажали на кнопку");
-
-
       var koordinates_object = [], i, j;
       for (i=0; i<136; i++) {
           koordinates_object.push(i);
@@ -285,6 +282,49 @@
               koordinates_object[i].push(object_koord_x[i], object_koord_y[i]);
           }
       }
+
+
+
+      <?php
+        include "php_extra/db_connect.php";
+        $query_theatre = "SELECT theatre_name, theatre_name_eng, theatre_type, theatre_site, theatre_email, theatre_koord_x, theatre_koord_y  FROM teatry";
+        $theatre_name = [];
+        $theatre_name_eng = [];
+        $theatre_type = [];
+        $theatre_site = [];
+        $theatre_email = [];
+        $theatre_koord_x = [];
+        $theatre_koord_y = [];
+        $sql_theatre = mysqli_query($link, $query_theatre);
+        while ($res_theatre = mysqli_fetch_array($sql_theatre)){
+            $theatre_name[] = (string)$res_theatre["theatre_name"];
+            // $theatre_name_eng[] = (string)$res_theatre["theatre_name_eng"];
+            $theatre_type[] = (string)$res_theatre["theatre_type"];
+            $theatre_site[] = (string)$res_theatre["theatre_site"];
+            $theatre_email[] = (string)$res_theatre["theatre_site"];
+            $theatre_koord_x[] = (float)$res_theatre["theatre_koord_x"];
+            $theatre_koord_y[] = (float)$res_theatre["theatre_koord_y"];
+        }  
+    ?>
+    var theatre_name = JSON.parse('<?=json_encode($theatre_name)?>');
+    var theatre_name_eng = JSON.parse('<?=json_encode($theatre_name_eng)?>');
+    var theatre_type = JSON.parse('<?=json_encode($theatre_type)?>');
+    var theatre_site = JSON.parse('<?=json_encode($theatre_site)?>');
+    var theatre_email = JSON.parse('<?=json_encode($theatre_email)?>');
+    var theatre_koord_x = JSON.parse('<?=json_encode($theatre_koord_x)?>');
+    var theatre_koord_y = JSON.parse('<?=json_encode($theatre_koord_y)?>');
+
+    var koordinates_theatre = [], i, j;
+    for (i=0; i<214; i++) {
+        koordinates_theatre.push(i);
+        koordinates_theatre[i] = [];
+        for (j=0; j<1; j++) {
+            koordinates_theatre[i].push(theatre_koord_x[i], theatre_koord_y[i]);
+        }
+    }
+
+
+
 
   
     ymaps.ready(init);
@@ -333,13 +373,13 @@
         var suggestView2 = new ymaps.SuggestView('suggest2', {provider: provider, results: 3});
        
 
-        var myClusterer = new ymaps.Clusterer();
-        // cafe = ymaps.geoQuery({
+
+        var myClusterer_hotel = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_hotel.length; i++) {
           console.log(koordinates_hotel[i][0]);
           var coo = koordinates_hotel[i];
           console.log(coo);
-          myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
+          myPlacemark_hotel = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: hotel_name[i],
               balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>' ].join(''),
@@ -361,31 +401,37 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
-          console.log(myPlacemark);
-          myMap.geoObjects.add(myPlacemark);
-          myClusterer.add(myPlacemark);
 
-          // let click_1 = document.getElementById('show_regions');
-          // click_1.onclick = function() {
-          //     var suggest2 = document.getElementById('suggest2').value;
-          //     map(myClusterer);
-          // }
+          console.log(myPlacemark_hotel);
+          myMap.geoObjects.add(myPlacemark_hotel);
+          myClusterer_hotel.add(myPlacemark_hotel);
+            // let click_1 = document.getElementById('show_regions');
+            // click_1.onclick = function() {
+            //     var suggest2 = document.getElementById('suggest2').value;
+            //     map(myClusterer_hotel);
+            // }
         };
-        myMap.geoObjects.add(myClusterer);
+        
+        myMap.geoObjects.add(myClusterer_hotel);
         // let click_1 = document.getElementById('show_regions');
         // click_1.onclick = function() {
         //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer);
+        //     map(myClusterer_hotel);
         // }
 
 
 
-        var myClusterer2 = new ymaps.Clusterer();
+
+
+
+
+
+        var myClusterer_museum = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_museum.length; i++) {
           console.log(koordinates_museum[i][0]);
           var coo = koordinates_museum[i];
           console.log(coo);
-          myPlacemark2 = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
+          myPlacemark_museum = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: museum_name[i],
               balloonContentBody: [museum_type[i], '<br/>', museum_email[i], '<br/>' ].join(''),
@@ -407,32 +453,33 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
-          console.log(myPlacemark2);
-          myMap.geoObjects.add(myPlacemark2);
-          myClusterer2.add(myPlacemark2);
 
-
+          console.log(myPlacemark_museum);
+          myMap.geoObjects.add(myPlacemark_museum);
+          myClusterer_museum.add(myPlacemark_museum);
           // let click_2 = document.getElementById('show_regions');
           // click_2.onclick = function() {
           //     var suggest2 = document.getElementById('suggest2').value;
-          //     map(myClusterer2);
+          //     map(myClusterer_museum);
           // }
         };
-        myMap.geoObjects.add(myClusterer2);
+        
+        myMap.geoObjects.add(myClusterer_museum);
         // let click_2 = document.getElementById('show_regions');
         // click_2.onclick = function() {
         //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer2);
+        //     map(myClusterer_museum);
         // }
 
 
 
-        var myClusterer3 = new ymaps.Clusterer();
+
+        var myClusterer_object = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_object.length; i++) {
           console.log(koordinates_object[i][0]);
-          var coo = koordinates_object[i];
-          console.log(coo);
-          myPlacemark3 = new ymaps.Placemark([koordinates_object[i][0], koordinates_object[i][1]], {
+          var koord_object = koordinates_object[i];
+          console.log(koord_object);
+          myPlacemark_object = new ymaps.Placemark([koordinates_object[i][0], koordinates_object[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: object_name[i],
               balloonContentBody: [object_type[i], '<br/>', object_email[i], '<br/>' ].join(''),
@@ -454,22 +501,70 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
-          console.log(myPlacemark3);
-          myMap.geoObjects.add(myPlacemark3);
-          myClusterer3.add(myPlacemark3);
+          console.log(myPlacemark_object);
+          myMap.geoObjects.add(myPlacemark_object);
+          myClusterer_object.add(myPlacemark_object);
 
           // let click_3 = document.getElementById('show_regions');
           // click_3.onclick = function() {
           //     var suggest2 = document.getElementById('suggest2').value;
-          //     map(myClusterer3);
+          //     map(myClusterer_object);
           // }
         };
-        myMap.geoObjects.add(myClusterer3);
+        myMap.geoObjects.add(myClusterer_object);
         // let click_3 = document.getElementById('show_regions');
         // click_3.onclick = function() {
         //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer3);
+        //     map(myClusterer_object);
         // }
+
+
+
+
+
+
+        // var myClusterer_theatre = new ymaps.Clusterer();
+        // for (var i = 0; i<koordinates_theatre.length; i++) {
+        //   console.log(koordinates_theatre[i][0]);
+        //   var koord_theatre = koordinates_theatre[i];
+        //   console.log(koord_theatre);
+        //   myPlacemark_theatre = new ymaps.Placemark([koordinates_theatre[i][0], koordinates_theatre[i][1]], {
+        //       // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
+        //       balloonContentHeader: theatre_name[i],
+        //       balloonContentBody: [theatre_email[i], '<br/>', theatre_type[i], '<br/>' ].join(''),
+        //       balloonContentFooter: theatre_site[i],
+        //       //clusterCaption: "<strong><s>Еще</s> одна</strong>",
+        //       hintContent: theatre_name_eng[i] },
+        //     // }, {
+        //     //   preset: 'islands#redIcon'
+        //     // }, 
+        //     {
+        //     // Опции.
+        //     // Необходимо указать данный тип макета.
+        //     iconLayout: 'default#image',
+        //     // Своё изображение иконки метки.
+        //     iconImageHref: 'images/theatre_loc.png',
+        //     // Размеры метки.
+        //     iconImageSize: [30, 30],
+        //     // Смещение левого верхнего угла иконки относительно
+        //     // её "ножки" (точки привязки).
+        //     iconImageOffset: [-5, -38]
+        // }),
+        //   console.log(myPlacemark_theatre);
+        //   myMap.geoObjects.add(myPlacemark_theatre);
+        //   myClusterer_theatre.add(myPlacemark_theatre);
+
+        //   // let click_4 = document.getElementById('show_regions');
+        //   // click_4.onclick = function() {
+        //   //     var suggest2 = document.getElementById('suggest2').value;
+        //   //     map(myClusterer_theatre);
+        //   // }
+        // };
+        // myMap.geoObjects.add(myClusterer_theatre);
+
+
+
+
 
 
         //!
