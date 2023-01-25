@@ -5228,7 +5228,7 @@ input[type="button"].btn-block {
   background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.if_no_acc {
+.if_no_acc, .logout-class {
   text-align: center;
 }
 
@@ -11589,7 +11589,7 @@ h5,
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light {
-    background: #000000 !important;
+    background: white !important;
     position: relative;
     top: 0;
   }
@@ -11635,7 +11635,7 @@ h5,
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
-    color: #fff;
+    color: black;
   }
 }
 
@@ -11718,7 +11718,7 @@ h5,
 
 .ftco-navbar-light .navbar-toggler {
   border: none;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: black !important;
   cursor: pointer;
   padding-right: 0;
   text-transform: uppercase;
@@ -14314,8 +14314,6 @@ textarea.form-control {
   }
 }
 
-
-
 .show_regions {
   width: 90%;
   /* margin: 40px auto; */
@@ -14324,12 +14322,28 @@ textarea.form-control {
   margin-top: 150px;
 }
 
+#logout_button, #change_button {
+  width: 80px;
+  /* margin: 40px auto; */
+  text-align: center;
+  /* margin-top: 90px; */
+  margin-top: -90px;
+}
+#change_button {
+  width: 160px;
+  margin-top: 30px;
+}
+.account {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .custom-btn {
   width: 200px;
   height: 40px;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px 25px;
   font-weight: 600;
   background: transparent;
@@ -14341,6 +14355,29 @@ textarea.form-control {
     7px 7px 20px 0px rgba(0, 0, 0, .1),
     4px 4px 5px 0px rgba(0, 0, 0, .1);
   outline: none;
+}
+.custom-btn2 {
+  width: 250px;
+  height: 40px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+    7px 7px 20px 0px rgba(0, 0, 0, .1),
+    4px 4px 5px 0px rgba(0, 0, 0, .1);
+  outline: none;
+}
+.logout_class, .change_class {
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 .button1 {

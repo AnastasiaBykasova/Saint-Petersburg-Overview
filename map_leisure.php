@@ -21,6 +21,7 @@
 
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8187bf9-d435-41c6-8c4c-cdaefed6b329" type="text/javascript"></script>
   <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+  <script src="https://yastatic.net/jquery/2.2.3/jquery.min.js"></script>
   <!-- <script src="js_files/map_leisure.js" type="text/javascript"></script> -->
   <style>
     body,
@@ -39,6 +40,14 @@
       display: block;
       margin-left: auto;
       margin-right: 2%;
+    }
+    .regions_map {
+      margin-bottom: 60px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      text-align: center;
     }
 
     #language {
@@ -124,7 +133,6 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
           <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
-          <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
           <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
           <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -148,12 +156,13 @@
             <input type="text" name="suggest2" id="suggest2">
           </div>
           <div class="show_regions">
-            <button id="show_regions" class="custom-btn button1"><span>Поиск</span></button>
+            <form method="post" action="map_leisure.php"><button id="show_regions" name="show_regions" class="custom-btn button1"><span>Поиск</span></button></form>
           </div>
         </form>
     </div>
   </section>
 
+  
 
 
 <!--//! это код для карты -->    
@@ -182,6 +191,9 @@
             $hotel_koord_x[] = (float)$res_hotel["hotel_koord_x"];
             $hotel_koord_y[] = (float)$res_hotel["hotel_koord_y"];
         }  
+        //$result = array_unique($hotel_region);
+        // var_dump($result);
+  
     ?>
     var hotel_name = JSON.parse('<?=json_encode($hotel_name)?>');
     var hotel_type = JSON.parse('<?=json_encode($hotel_type)?>');
@@ -202,8 +214,9 @@
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
-    // var region_unique = hotel_region.filter(onlyUnique);
-    // document.write(region_unique.sort());
+    var region_unique = hotel_region.filter(onlyUnique);
+    var region_unique_sort = region_unique.sort();
+   
 
     <?php
         include "php_extra/db_connect.php";
@@ -323,6 +336,22 @@
         }
     }
 
+    <?php 
+      // if (isset($_POST['show_regions'])) {
+      //   print_r($_POST['suggest2']);
+      //   // header("Location: ../ztrying.php");
+      // }
+    ?>
+
+    let click_1 = document.getElementById('show_regions');
+        click_1.onclick = function() {
+            var suggest2 = document.getElementById('suggest2').value;
+            // map(myClusterer, myClusterer2, myClusterer3);
+            // e.preventDefault();
+            //alert(suggest2);
+        }
+
+
 
 
 
@@ -346,6 +375,16 @@
             clusterHideIconOnBalloonOpen: false,
             geoObjectHideIconOnBalloonOpen: false
         });
+        // objectManager = new ymaps.ObjectManager();
+        // $.getJSON('regions.json')
+        // .done(function (geoJson) {
+        //     // Добавляем описание объектов в формате JSON в менеджер объектов.
+        //     objectManager.add(geoJson);
+        //     // Добавляем объекты на карту.
+        //     myMap.geoObjects.add(objectManager);
+        // });
+
+
 
         var tileUrlTemplate = 'hotspot_data/%z/tile_x=%x&y=%y',
 
@@ -379,6 +418,9 @@
           console.log(koordinates_hotel[i][0]);
           var coo = koordinates_hotel[i];
           console.log(coo);
+          
+
+          
           myPlacemark_hotel = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: hotel_name[i],
@@ -401,6 +443,7 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
+        
 
           console.log(myPlacemark_hotel);
           myMap.geoObjects.add(myPlacemark_hotel);
@@ -411,15 +454,16 @@
             //     map(myClusterer_hotel);
             // }
         };
-        
+        if (hotel_region[i] == suggest2) {
         myMap.geoObjects.add(myClusterer_hotel);
         // let click_1 = document.getElementById('show_regions');
         // click_1.onclick = function() {
         //     var suggest2 = document.getElementById('suggest2').value;
         //     map(myClusterer_hotel);
         // }
+      }
 
-
+      
 
 
 
@@ -710,7 +754,12 @@
     
   </script>
 
-
+<section>
+  <div class="regions_map">
+    <h3>Районы Санкт-Петербурга</h3>
+    <img src="images/regions_map.jpg" height="600">
+  </div>
+</section>
 
     
 

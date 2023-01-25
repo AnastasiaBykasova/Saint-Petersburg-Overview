@@ -8,14 +8,22 @@
 		$user_email = $_POST['user_email'];
 		$password = $_POST['user_password'];
 		
+		
 		$query = "SELECT * FROM users WHERE user_email='$user_email' AND user_password='$password'";
 		$result = mysqli_query($link, $query);
 		$user = mysqli_fetch_assoc($result);
 		
 		if (!empty($user)) {
 			$_SESSION['auth'] = true;
+			$_SESSION['email'] = $_POST['user_email'];
 			header("Location: ../ztrying.php");
 		} 
+		else {
+			echo '<p class="auth_error">Данные введены неверно</p>';
+			$_SESSION['auth'] = null;
+			// echo '<p class="auth_error">Данные введены неверно</p>';
+			header("Location: ../ztrying.php");
+		}
 	}
 
 

@@ -47,29 +47,24 @@
       <div class="container">
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Регистрация</h2>
+          	<h2 class="text-center">Изменение данных</h2>
             <form class="bg-light p-5 contact-form" action="" method="post" id="contactForm" novalidate="novalidate">
-                  <div class="form-group">
-                      <div class="form-group">
-                          <input class="form-control valid" autocomplete="off" name="name" id="name" type="text" placeholder="Имя">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-group">
-                          <input class="form-control valid" autocomplete="off" name="email" id="email" type="email" placeholder="Email">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-group">
-                          <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Пароль">
-                      </div>
-                  </div>
-              <div class="form-group">
-                  <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
-              </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <input class="form-control valid" autocomplete="off" name="email" id="email" type="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Пароль">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
+                </div>
           </form>
             <?php
-              require "php_extra/regist.php";
+              require "php_extra/change.php";
             ?>
           </div>
         </div>

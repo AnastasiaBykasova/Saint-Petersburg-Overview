@@ -22,22 +22,21 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <img src="images/logo_black.png" height="50">
-	      <a class="navbar-brand" href="index.php">Главная</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Меню
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
-            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
+            <li class="nav-item active"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
             <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
             <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
-	        </ul>
+          </ul>
 	      </div>
 	    </div>
-      <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a>
+      <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
 	  </nav>
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -45,12 +44,39 @@
     </div>
 
 		<section class="ftco-section contact-section">
-      <div class="elements-chosen">
-        <p>Выбранная гостиница</p>
-        <p>Избранные достопримечательности</p>
-        <p>Избранные музеи</p>
+      <div class="container">
+        <div class="row block-9 justify-content-center mb-5">
+          <div class="col-md-8 mb-md-5">
+          	
+            <?php
+                // require "php_extra/auth.php";
+                // if (!empty($_SESSION['auth'])) {
+                //     echo '<form method="post"><input type="submit" name="logout_button" value="Выход"></form>';
+                //     if (isset($_POST['logout_button'])) {
+                //         $_SESSION['auth'] = false;
+                //         header("Location: ../auth.php");
+                //     }
+                // }
+                // else {
+                //     echo "сначала авторизуйтесь";
+                // }
+                
+            ?>
+          	
+
+            <?php
+            //   require "php_extra/auth.php";
+              // if (!empty($_SESSION['auth'])) {
+              //   echo "Авторизация прошла успешно";
+              // }
+              // if (empty($_SESSION['auth'])) {
+              //   echo '<p class="auth_error">'."Данные введены неверно".'</p>';
+              // }
+            ?>
+          </div>
+        </div>
       </div>
-        </section>
+    </section>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -126,3 +152,4 @@
     
   </body>
 </html>
+
