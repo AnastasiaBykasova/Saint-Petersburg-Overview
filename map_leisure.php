@@ -33,13 +33,13 @@
     }
 
     #map {
-      margin-top: -330px;
-      width: 70%;
+      margin-top: 100px;
+      width: 80%;
       height: 80%;
       margin-bottom: 60px;
       display: block;
       margin-left: auto;
-      margin-right: 2%;
+      margin-right: auto;
     }
     .regions_map {
       margin-bottom: 60px;
@@ -132,7 +132,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-          <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+          <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
           <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
           <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -144,15 +144,13 @@
 
  
 
-  
+<!--   
   <section class="ftco-section contact-section">
     <div class="row block-9 justify-content-left mb-2">
       <div class="col-md-8 mb-md-2">
         <form class="searching_objects">
           <div class="searching_objects">
             <p class="search_objects">Выбрать район расположения гостиницы</p>
-            <!-- <input type="text" id="suggest2"> -->
-            <!-- <input type="text" id="suggest2" placeholder="some text" class="search" onkeydown="search(this)"/> -->
             <input type="text" name="suggest2" id="suggest2">
           </div>
           <div class="show_regions">
@@ -160,7 +158,7 @@
           </div>
         </form>
     </div>
-  </section>
+  </section> -->
 
   
 
@@ -298,58 +296,22 @@
 
 
 
-      <?php
-        include "php_extra/db_connect.php";
-        $query_theatre = "SELECT theatre_name, theatre_name_eng, theatre_type, theatre_site, theatre_email, theatre_koord_x, theatre_koord_y  FROM teatry";
-        $theatre_name = [];
-        $theatre_name_eng = [];
-        $theatre_type = [];
-        $theatre_site = [];
-        $theatre_email = [];
-        $theatre_koord_x = [];
-        $theatre_koord_y = [];
-        $sql_theatre = mysqli_query($link, $query_theatre);
-        while ($res_theatre = mysqli_fetch_array($sql_theatre)){
-            $theatre_name[] = (string)$res_theatre["theatre_name"];
-            // $theatre_name_eng[] = (string)$res_theatre["theatre_name_eng"];
-            $theatre_type[] = (string)$res_theatre["theatre_type"];
-            $theatre_site[] = (string)$res_theatre["theatre_site"];
-            $theatre_email[] = (string)$res_theatre["theatre_site"];
-            $theatre_koord_x[] = (float)$res_theatre["theatre_koord_x"];
-            $theatre_koord_y[] = (float)$res_theatre["theatre_koord_y"];
-        }  
-    ?>
-    var theatre_name = JSON.parse('<?=json_encode($theatre_name)?>');
-    var theatre_name_eng = JSON.parse('<?=json_encode($theatre_name_eng)?>');
-    var theatre_type = JSON.parse('<?=json_encode($theatre_type)?>');
-    var theatre_site = JSON.parse('<?=json_encode($theatre_site)?>');
-    var theatre_email = JSON.parse('<?=json_encode($theatre_email)?>');
-    var theatre_koord_x = JSON.parse('<?=json_encode($theatre_koord_x)?>');
-    var theatre_koord_y = JSON.parse('<?=json_encode($theatre_koord_y)?>');
-
-    var koordinates_theatre = [], i, j;
-    for (i=0; i<214; i++) {
-        koordinates_theatre.push(i);
-        koordinates_theatre[i] = [];
-        for (j=0; j<1; j++) {
-            koordinates_theatre[i].push(theatre_koord_x[i], theatre_koord_y[i]);
-        }
-    }
+      
 
     <?php 
       // if (isset($_POST['show_regions'])) {
       //   print_r($_POST['suggest2']);
-      //   // header("Location: ../ztrying.php");
+      //   // header("Location: ../pesonal_page.php");
       // }
     ?>
 
-    let click_1 = document.getElementById('show_regions');
-        click_1.onclick = function() {
-            var suggest2 = document.getElementById('suggest2').value;
-            // map(myClusterer, myClusterer2, myClusterer3);
-            // e.preventDefault();
-            //alert(suggest2);
-        }
+    // let click_1 = document.getElementById('show_regions');
+    //     click_1.onclick = function() {
+    //         var suggest2 = document.getElementById('suggest2').value;
+    //         // map(myClusterer, myClusterer2, myClusterer3);
+    //         // e.preventDefault();
+    //         //alert(suggest2);
+    //     }
 
 
 
@@ -386,45 +348,33 @@
 
 
 
-        var tileUrlTemplate = 'hotspot_data/%z/tile_x=%x&y=%y',
-
-        // Шаблон callback-функции, в которую сервер будет оборачивать данные тайла.
-        // Пример callback-функции после подстановки - 'testCallback_tile_x_1_y_2_z_9'.
-        keyTemplate = 'testCallback_tile_%c',
-
-        // URL тайлов картиночного слоя.
-        // Пример URL после подстановки -
-        // '.../hotspot_layer/images/9/tile_x=1&y=2.png'.
-        imgUrlTemplate = 'images/%z/tile_x=%x&y=%y.png',
-
-        // Создадим источник данных слоя активных областей.
-        objSource = new ymaps.hotspot.ObjectSource(tileUrlTemplate, keyTemplate),
-
-        // Создаем картиночный слой и слой активных областей.
-        imgLayer = new ymaps.Layer(imgUrlTemplate, {tileTransparent: true}),
-        hotspotLayer = new ymaps.hotspot.Layer(objSource, {cursor: 'help'});
-
-        // Добавляем слои на карту.
-        myMap.layers.add(hotspotLayer);
-        myMap.layers.add(imgLayer);
-
-        // Задаем собственный провайдер поисковых подсказок и максимальное количество результатов.
-        var suggestView2 = new ymaps.SuggestView('suggest2', {provider: provider, results: 3});
+        // var tileUrlTemplate = 'hotspot_data/%z/tile_x=%x&y=%y',
+        // // Шаблон callback-функции, в которую сервер будет оборачивать данные тайла.
+        // // Пример callback-функции после подстановки - 'testCallback_tile_x_1_y_2_z_9'.
+        // keyTemplate = 'testCallback_tile_%c',
+        // // URL тайлов картиночного слоя.
+        // // Пример URL после подстановки -
+        // // '.../hotspot_layer/images/9/tile_x=1&y=2.png'.
+        // imgUrlTemplate = 'images/%z/tile_x=%x&y=%y.png',
+        // // Создадим источник данных слоя активных областей.
+        // objSource = new ymaps.hotspot.ObjectSource(tileUrlTemplate, keyTemplate),
+        // // Создаем картиночный слой и слой активных областей.
+        // imgLayer = new ymaps.Layer(imgUrlTemplate, {tileTransparent: true}),
+        // hotspotLayer = new ymaps.hotspot.Layer(objSource, {cursor: 'help'});
+        // // Добавляем слои на карту.
+        // myMap.layers.add(hotspotLayer);
+        // myMap.layers.add(imgLayer);
+        // // Задаем собственный провайдер поисковых подсказок и максимальное количество результатов.
+        // var suggestView2 = new ymaps.SuggestView('suggest2', {provider: provider, results: 3});
        
 
-
+        //!
         var myClusterer_hotel = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_hotel.length; i++) {
-          console.log(koordinates_hotel[i][0]);
-          var coo = koordinates_hotel[i];
-          console.log(coo);
-          
-
-          
           myPlacemark_hotel = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: hotel_name[i],
-              balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>' ].join(''),
+              balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>', '<form method="post" action="map_leisure.php"><button id="show_regions" name="show_regions" class="custom-btn button1"><span>В избранное</span></button></form>' ].join(''),
               balloonContentFooter: hotel_site[i],
               //clusterCaption: "<strong><s>Еще</s> одна</strong>",
               hintContent: hotel_region[i] },
@@ -448,28 +398,11 @@
           console.log(myPlacemark_hotel);
           myMap.geoObjects.add(myPlacemark_hotel);
           myClusterer_hotel.add(myPlacemark_hotel);
-            // let click_1 = document.getElementById('show_regions');
-            // click_1.onclick = function() {
-            //     var suggest2 = document.getElementById('suggest2').value;
-            //     map(myClusterer_hotel);
-            // }
+        
         };
-        if (hotel_region[i] == suggest2) {
         myMap.geoObjects.add(myClusterer_hotel);
-        // let click_1 = document.getElementById('show_regions');
-        // click_1.onclick = function() {
-        //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer_hotel);
-        // }
-      }
-
-      
-
-
-
-
-
-
+        
+        //! 
         var myClusterer_museum = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_museum.length; i++) {
           console.log(koordinates_museum[i][0]);
@@ -517,7 +450,7 @@
 
 
 
-
+          //!
         var myClusterer_object = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_object.length; i++) {
           console.log(koordinates_object[i][0]);
@@ -548,67 +481,8 @@
           console.log(myPlacemark_object);
           myMap.geoObjects.add(myPlacemark_object);
           myClusterer_object.add(myPlacemark_object);
-
-          // let click_3 = document.getElementById('show_regions');
-          // click_3.onclick = function() {
-          //     var suggest2 = document.getElementById('suggest2').value;
-          //     map(myClusterer_object);
-          // }
         };
         myMap.geoObjects.add(myClusterer_object);
-        // let click_3 = document.getElementById('show_regions');
-        // click_3.onclick = function() {
-        //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer_object);
-        // }
-
-
-
-
-
-
-        // var myClusterer_theatre = new ymaps.Clusterer();
-        // for (var i = 0; i<koordinates_theatre.length; i++) {
-        //   console.log(koordinates_theatre[i][0]);
-        //   var koord_theatre = koordinates_theatre[i];
-        //   console.log(koord_theatre);
-        //   myPlacemark_theatre = new ymaps.Placemark([koordinates_theatre[i][0], koordinates_theatre[i][1]], {
-        //       // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
-        //       balloonContentHeader: theatre_name[i],
-        //       balloonContentBody: [theatre_email[i], '<br/>', theatre_type[i], '<br/>' ].join(''),
-        //       balloonContentFooter: theatre_site[i],
-        //       //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-        //       hintContent: theatre_name_eng[i] },
-        //     // }, {
-        //     //   preset: 'islands#redIcon'
-        //     // }, 
-        //     {
-        //     // Опции.
-        //     // Необходимо указать данный тип макета.
-        //     iconLayout: 'default#image',
-        //     // Своё изображение иконки метки.
-        //     iconImageHref: 'images/theatre_loc.png',
-        //     // Размеры метки.
-        //     iconImageSize: [30, 30],
-        //     // Смещение левого верхнего угла иконки относительно
-        //     // её "ножки" (точки привязки).
-        //     iconImageOffset: [-5, -38]
-        // }),
-        //   console.log(myPlacemark_theatre);
-        //   myMap.geoObjects.add(myPlacemark_theatre);
-        //   myClusterer_theatre.add(myPlacemark_theatre);
-
-        //   // let click_4 = document.getElementById('show_regions');
-        //   // click_4.onclick = function() {
-        //   //     var suggest2 = document.getElementById('suggest2').value;
-        //   //     map(myClusterer_theatre);
-        //   // }
-        // };
-        // myMap.geoObjects.add(myClusterer_theatre);
-
-
-
-
 
 
         //!
@@ -633,100 +507,91 @@
         
 
 
+    //     ButtonLayout = ymaps.templateLayoutFactory.createClass([
+    //         '<div title="{{ data.title }}" class="my-button ',
+    //         '{% if state.size == "small" %}my-button_small{% endif %}',
+    //         '{% if state.size == "medium" %}my-button_medium{% endif %}',
+    //         '{% if state.size == "large" %}my-button_large{% endif %}',
+    //         '{% if state.selected %} my-button-selected{% endif %}">',
+    //         '<img class="my-button__img" src="{{ data.image }}" alt="{{ data.title }}">',
+    //         '<span class="my-button__text">{{ data.content }}</span>',
+    //         '</div>'
+    //     ].join('')),
 
+    //     hotel_button = new ymaps.control.Button({
+    //         data: {
+    //             content: "Показать гостиницы",
+    //             image: 'images/hotel_loc_min.png',
+    //             title: "Гостиницы"
+    //         },
+    //         options: {
+    //             layout: ButtonLayout,
+    //             maxWidth: [170, 190, 220]
+    //         }
+    //     });
 
-        //myMap.geoObjects.add(arrr);
+    // myMap.controls.add(hotel_button, {
+    //     position: {
+    //         right: 145,
+    //         top: 9
+    //     }
+    // });
 
+    // museum_button = new ymaps.control.Button({
+    //         data: {
+    //             content: "Показать музеи",
+    //             image: 'images/museum_loc_min.png',
+    //             title: "Музеи"
+    //         },
+    //         options: {
+    //             layout: ButtonLayout,
+    //             maxWidth: [170, 190, 220]
+    //         }
+    //     });
 
+    // myMap.controls.add(museum_button, {
+    //     position: {
+    //         right: 335,
+    //         top: 9
+    //     }
+    // });
 
+    // object_button = new ymaps.control.Button({
+    //         data: {
+    //             content: "Показать достопримечательности",
+    //             image: 'images/leisure_loc_min.png',
+    //             title: "Музеи"
+    //         },
+    //         options: {
+    //             layout: ButtonLayout,
+    //             maxWidth: [170, 190, 220]
+    //         }
+    //     });
 
-
-
-        ButtonLayout = ymaps.templateLayoutFactory.createClass([
-            '<div title="{{ data.title }}" class="my-button ',
-            '{% if state.size == "small" %}my-button_small{% endif %}',
-            '{% if state.size == "medium" %}my-button_medium{% endif %}',
-            '{% if state.size == "large" %}my-button_large{% endif %}',
-            '{% if state.selected %} my-button-selected{% endif %}">',
-            '<img class="my-button__img" src="{{ data.image }}" alt="{{ data.title }}">',
-            '<span class="my-button__text">{{ data.content }}</span>',
-            '</div>'
-        ].join('')),
-
-        hotel_button = new ymaps.control.Button({
-            data: {
-                content: "Показать гостиницы",
-                image: 'images/hotel_loc_min.png',
-                title: "Гостиницы"
-            },
-            options: {
-                layout: ButtonLayout,
-                maxWidth: [170, 190, 220]
-            }
-        });
-
-    myMap.controls.add(hotel_button, {
-        position: {
-            right: 145,
-            top: 9
-        }
-    });
-
-    museum_button = new ymaps.control.Button({
-            data: {
-                content: "Показать музеи",
-                image: 'images/museum_loc_min.png',
-                title: "Музеи"
-            },
-            options: {
-                layout: ButtonLayout,
-                maxWidth: [170, 190, 220]
-            }
-        });
-
-    myMap.controls.add(museum_button, {
-        position: {
-            right: 335,
-            top: 9
-        }
-    });
-
-    object_button = new ymaps.control.Button({
-            data: {
-                content: "Показать достопримечательности",
-                image: 'images/leisure_loc_min.png',
-                title: "Музеи"
-            },
-            options: {
-                layout: ButtonLayout,
-                maxWidth: [170, 190, 220]
-            }
-        });
-
-    myMap.controls.add(object_button, {
-        position: {
-            right: 495,
-            top: 9
-        }
-    });
+    // myMap.controls.add(object_button, {
+    //     position: {
+    //         right: 495,
+    //         top: 9
+    //     }
+    // });
 
     }
-    find = function (hotel_region, find) {
-        return hotel_region.filter(function (value) {
-            return (value + "").toLowerCase().indexOf(find.toLowerCase()) != -1;
-        });
-    };
-    var provider = {
-        suggest: function (request, options) {
-            var res = find(hotel_region, request),
-                arrayResult = [],
-                results = Math.min(options.results, res.length);
-            for (var i = 0; i < results; i++) {
-                arrayResult.push({displayName: res[i], value: res[i]})
-            }
-            return ymaps.vow.resolve(arrayResult);
-        }
-    };
+    // find = function (hotel_region, find) {
+    //     return hotel_region.filter(function (value) {
+    //         return (value + "").toLowerCase().indexOf(find.toLowerCase()) != -1;
+    //     });
+    // };
+    // var provider = {
+    //     suggest: function (request, options) {
+    //         var res = find(hotel_region, request),
+    //             arrayResult = [],
+    //             results = Math.min(options.results, res.length);
+    //         for (var i = 0; i < results; i++) {
+    //             arrayResult.push({displayName: res[i], value: res[i]})
+    //         }
+    //         return ymaps.vow.resolve(arrayResult);
+    //     }
+    // };
 
     // if (event.target.className === 'show_regions') { 
     //     let screen = document.getElementById("suggest2");
@@ -759,6 +624,21 @@
     <h3>Районы Санкт-Петербурга</h3>
     <img src="images/regions_map.jpg" height="600">
   </div>
+</section>
+
+<section class="section_table">
+<div class = "table">
+    <table class="table_db">
+    <thead><tr><th>Район</th><th>Количество гостиниц</th><th>Район</th><th>Количество музеев</th></tr></thead>.
+    <?php
+      require "php_extra/db_connect.php";
+      $sql = mysqli_query($link, 'SELECT * FROM `amount`');
+        while ($result = mysqli_fetch_array($sql)) {
+          echo '<tr>'.'<td>' .$result['region_h'].'</td>'.'<td>' .$result['amount_h'].'</td>'.'<td>' .$result['region_m'].'</td>'.'<td>' .$result['amount_m'].'</td>'.'</tr>';
+        }  
+    ?>
+    </table>
+</div>
 </section>
 
     

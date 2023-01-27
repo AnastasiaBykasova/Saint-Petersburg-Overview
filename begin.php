@@ -30,7 +30,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
 	          <li class="nav-item active"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -57,16 +57,20 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-                <h3 class="heading"><a href="#">Выбрать, куда сходить</a></h3>
-                <a href="map.php" class="block-20 img" style="background-image: url('images/image_2.jpg');">
-	              </a>
-                <p>Ближайшие достопримечательности/музеи для выбранной гостиницы и маршрут к ним.</p>
+          <?php require "php_extra/auth.php";
+           if (!empty($_SESSION['auth'])) {
+            echo '<div class="col-md-6 d-flex ftco-animate">
+              <div class="blog-entry justify-content-end">
+                <div class="text">
+                  <h3 class="heading"><a href="#">Выбрать, куда сходить</a></h3>
+                  <a href="map.php" class="block-20 img" style="background-image: url(images/image_2.jpg);">
+                  </a>
+                  <p>Ближайшие достопримечательности/музеи для выбранной гостиницы и маршрут к ним.</p>
+                </div>
               </div>
-            </div>
-          </div>
+            </div>';
+            }
+          ?>
 
       </div>
     </section>

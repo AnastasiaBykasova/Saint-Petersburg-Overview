@@ -9,6 +9,19 @@ if ($link == False) {
     die("Cannot connect DB");
 }
 
+
+
+// $db_host = 'localhost';
+// $db_user = 'nastybls_s_peter'; //имя пользователя совпадает с именем БД
+// $db_password = 'Qq12345678'; //пароль, указанный при создании БД
+// $database = 'nastybls_s_peter'; //имя БД, которое было указано при создании
+// $link = mysqli_connect($db_host, $db_user, $db_password, $database);
+// if ($link == False) {
+//     die("Cannot connect DB");
+// }
+
+
+
 //----------------------------------------------------------------------------------------
 
 ?>

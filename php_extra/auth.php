@@ -12,17 +12,19 @@
 		$query = "SELECT * FROM users WHERE user_email='$user_email' AND user_password='$password'";
 		$result = mysqli_query($link, $query);
 		$user = mysqli_fetch_assoc($result);
-		
 		if (!empty($user)) {
 			$_SESSION['auth'] = true;
+
+
+
 			$_SESSION['email'] = $_POST['user_email'];
-			header("Location: ../ztrying.php");
+			$_SESSION['fav'] = null;
+			header("Location: ../pesonal_page.php");
 		} 
 		else {
-			echo '<p class="auth_error">Данные введены неверно</p>';
+			echo 'Данные введены неверно';
 			$_SESSION['auth'] = null;
-			// echo '<p class="auth_error">Данные введены неверно</p>';
-			header("Location: ../ztrying.php");
+			header("Location: ../pesonal_page.php");
 		}
 	}
 

@@ -77,7 +77,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-          <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+          <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
           <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
           <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -220,24 +220,57 @@
           }
       }
 
+
+
+
+      <?php
+        include "php_extra/db_connect.php";
+        $query_fav_h = "SELECT gostinicy.hotel_id, hotel_name, hotel_koord_x, hotel_koord_y FROM gostinicy JOIN favourites ON gostinicy.hotel_id=favourites.hotel_id";
+        $h_name = [];
+        $h_koord_x = [];
+        $h_koord_y = [];
+        $sql_fav = mysqli_query($link, $query_fav_h);
+        while ($res_fav = mysqli_fetch_array($sql_fav)){
+            $h_name[] = (string)$res_fav["hotel_name"];
+            $h_koord_x[] = (float)$res_fav["hotel_koord_x"];
+            $h_koord_y[] = (float)$res_fav["hotel_koord_y"];
+        }  
+    ?>
+    var h_name = JSON.parse('<?=json_encode($h_name)?>');
+    var h_koord_x = JSON.parse('<?=json_encode($h_koord_x)?>');
+    var h_koord_y = JSON.parse('<?=json_encode($h_koord_y)?>');
+    
+      var fav_h = [], i, j;
+      for (i=0; i<740; i++) {
+        fav_h.push(i);
+        fav_h[i] = [];
+          for (j=0; j<1; j++) {
+            fav_h[i].push(h_koord_x[i], h_koord_y[i]);
+          }
+      }
+
     
 
 
 
     ymaps.ready(init);
+
+      // var favourites = [];
+      // favourites[0] = "59.920853, 29.777759";
+      // for (i=1; i<fav_h.length; i++) {
+      //   favourites[i] = hotel_koord_x[i-1] + ', ' + hotel_koord_y[i-1];      //fav_h[i-1]//+', '+koordinates_hotel[i-1];
+      // }
+      // console.log(favourites);
+
     function init(){
 
-      var pointA = [59.888284,30.463021],
-        pointB = [59.92265733, 30.288223059],
-        /**
-         * Создаем мультимаршрут.
-         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRoute.xml
-         */
+      var hotel = [[59.88216656424561, 30.489359499999985], [59.932723, 30.341459], [59.948795, 30.395549], [59.971118, 30.312769]];
+      var pointA = hotel[0],
+        pointB = hotel[1],
+        pointC = hotel[2],
+        pointD = hotel[3],
         multiRoute = new ymaps.multiRouter.MultiRoute({
-            referencePoints: [
-                pointA,
-                pointB
-            ],
+            referencePoints: [pointA, pointB, pointC, pointD],
             params: {
                 //Тип маршрутизации - пешеходная маршрутизация.
                 routingMode: 'pedestrian'

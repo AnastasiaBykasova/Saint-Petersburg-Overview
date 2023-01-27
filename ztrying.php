@@ -57,9 +57,13 @@
                             <div class="row block-9 justify-content-center mb-5">
                                 <div class="col-md-8 mb-md-5">
                                     <h5 class="account">Выбранная гостиница</h5>
+                                    <p>БЕЛЫЕ НОЧИ</p>
                                 </div>
                                 <div class="col-md-8 mb-md-5">
-                                    <h5 class="account">Избранные культурные объекты</h4>
+                                    <h5 class="account">Избранные культурные объекты</h5>
+                                    <p>Смольный собор</p>
+                                    <p>Аничков Дворец</p>
+                                    <p>Музей истории фотографии</p>
                                 </div>
                             </div>
                         </div>
@@ -69,14 +73,13 @@
                             <div class="row block-9 justify-content-center mb-5">
                                 <div class="col-md-8 mb-md-5">
                                     <h5 class="account">Аккаунт</h5>
-                                    <p>Email: </p>
-                                    <p>Статус: </p>
+                                    <p>Email: '.$_SESSION['email'].'</p>
                                     <div class="change_class"><form method="post"><button id="change_button" name="change_button" class="custom-btn button1"><span>Сменить данные</span></button></form></div>
                                 </div>
                             </div>
                         </div>
-                    </section>';
-                    echo '<div class="logout-class"><form method="post"><button id="logout_button" name="logout_button" class="custom-btn button1"><span>Выход</span></button></form></div>';
+                    </section>'.
+                    '<div class="logout-class"><form method="post"><button id="logout_button" name="logout_button" class="custom-btn button1"><span>Выход</span></button></form></div>';
                     if (isset($_POST['logout_button'])) {
                         session_destroy();  
                         $_SESSION['auth'] = null;
