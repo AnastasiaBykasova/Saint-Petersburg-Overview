@@ -29,7 +29,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -64,9 +64,17 @@
                           <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Пароль">
                       </div>
                   </div>
+                  <div class="form-group">
+                      <div class="form-group">
+                          <input class="form-control" autocomplete="off" name="check_password" id="subject" type="password" placeholder="Повторите пароль">
+                      </div>
+                  </div>
               <div class="form-group">
                   <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
               </div>
+              <?php
+                echo "<br><p class='if_no_acc'>Уже есть аккаунт? <a href='personal_page.php'>Войти</a></p><br>";
+              ?>
           </form>
             <?php
               require "php_extra/regist.php";

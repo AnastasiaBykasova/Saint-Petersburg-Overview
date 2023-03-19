@@ -17,7 +17,9 @@ echo '
                             <div class="form-group">
                             <input type="submit" formmethod=POST value="Отправить" class="btn btn-primary py-3 px-5">
                             </div>
-                            <p class="if_no_acc">Нет аккаунта? <a href="regist_page.php">Зарегистрироваться</a></p>
+                            
+                                <p class="if_no_acc">Нет аккаунта? <a href="regist_page.php">Зарегистрироваться</a></p><br>
+                        
                         </form>
                         </div>
                     </div>

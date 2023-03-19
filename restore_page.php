@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Связаться с нами</title>
+    <title>Восстановить доступ</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
             <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-	          <li class="nav-item active"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -45,72 +45,60 @@
 
 		<section class="ftco-section contact-section">
       <div class="container">
-        <div class="row d-flex mb-5 contact-info justify-content-center">
-        	<div class="col-md-8">
-        		<div class="row mb-5">
-		          <div class="col-md-4 text-center py-4">
-		          	<div class="icon">
-		          		<span class="icon-map-o"></span>
-		          	</div>
-		            <p><span>Адрес:</span>Москва, Россия</p>
-		          </div>
-		          <div class="col-md-4 text-center border-height py-4">
-		          	<div class="icon">
-		          		<span class="icon-mobile-phone"></span>
-		          	</div>
-		            <p><span>Телефон:</span> <a href="tel://1234567920">+79261045260</a></p>
-		          </div>
-		          <div class="col-md-4 text-center py-4">
-		          	<div class="icon">
-		          		<span class="icon-envelope-o"></span>
-		          	</div>
-		            <p><span>Email:</span> <a href="mailto:nastybykasova@gmail.com">nastybykasova@gmail.com</a></p>
-		          </div>
-		        </div>
-          </div>
-        </div>
+        
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Если у Вас остались вопросы,<br>отправьте нам сообщение</h2>
             <form class="bg-light p-5 contact-form" action="" method="post" id="contactForm" novalidate="novalidate">
+
+                <p>Для восстановления доступа мы отправим Вам письмо с кодом на электронную почту, указанную ниже</p>
+                  
                   <div class="form-group">
                       <div class="form-group">
-                          <input class="form-control valid" name="name" id="name" type="text" placeholder="Имя">
+                          <input class="form-control valid" name="email" id="email" type="email" placeholder="Введите email">
                       </div>
                   </div>
-                  <div class="form-group">
-                      <div class="form-group">
-                          <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-group">
-                          <input class="form-control" name="subject" id="subject" type="text" placeholder="Тема обращения">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-group">
-                          <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Текст сообщения"></textarea>
-                      </div>
-                  </div>
+                  
+                  
               <div class="form-group">
-                  <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
+                  <button type="submit" class="btn btn-primary py-3 px-5">Отправить письмо</button>
               </div>
           </form>
             <?php
-            $day_today = date("Y-m-d H:i:s"); //текущее время
-            include "php_extra/db_connect.php";
-            if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message'])){
-                $query = "INSERT INTO messages (message_name, message_email, message_subject, message_text, message_day, message_time) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['subject']}', '{$_POST['message']}', '{$day_today}', '{$day_today}')"; 
-                $result = mysqli_query($link, $query);
-            }
+            if (isset($_POST['email'])) {
+                //    $query = "INSERT INTO users (user_name, user_email, user_password) VALUES ('{$_POST['name']}', '{$_POST['email']}', '{$_POST['password']}')"; 
+            
+                    $user_email = $_POST['email'];
+                    // $old_password = $_POST['old_password'];
+                    
+                    $query = "SELECT * FROM users WHERE user_email='$user_email'";
+                    $result = mysqli_query($link, $query);
+                    $user = mysqli_fetch_assoc($result);
+                    if (!empty($user)) {
+                        // Сообщение
+                        $message = "Восстановление пароля\r\nВаш одноразовый код доступа:\r\n12345678";
+                        $headers = 'From: nastybykasova@gmail.com' . "\r\n" .
+                            'Reply-To: nastybykasova@gmail.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
+
+                        // На случай если какая-то строка письма длиннее 70 символов мы используем wordwrap()
+                        // $message = wordwrap($message, 70, "\r\n");
+
+                        // Отправляем
+                        mail('nastybykasova@gmail.com', 'My Subject', $message, $headers);
+                    } 
+                    else {
+                        echo 'email введен неверно';
+                        
+                    }
+            
+               }
             ?>
           </div>
         </div>
       </div>
     </section>
 
-  
+    
 
     <footer class="ftco-footer ftco-section">
       <div class="container">

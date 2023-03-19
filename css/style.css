@@ -5232,7 +5232,7 @@ input[type="button"].btn-block {
   text-align: center;
 }
 
-.searching_objects {
+.searching_objects, .show-map-regions {
   position: relative;
   margin-top: 40px;
   display: block;

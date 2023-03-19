@@ -33,14 +33,15 @@
     }
 
     #map {
-      margin-top: 100px;
-      width: 80%;
+      margin-top: -400px;
+      width: 75%;
       height: 80%;
       margin-bottom: 60px;
       display: block;
       margin-left: auto;
-      margin-right: auto;
+      margin-right: 1%;
     }
+
     .regions_map {
       margin-bottom: 60px;
       display: block;
@@ -74,51 +75,53 @@
     }
 
     .my-button {
-            /* display: inline-block; */
-            display: block;
-            padding: 3px 5px;
-            background: #eee;
-            border: 1px solid #bbb;
-            border-radius: 3px;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-        .my-button__text {
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #333;
-            margin-left: 10px;
-        }
+      /* display: inline-block; */
+      display: block;
+      padding: 3px 5px;
+      background: #eee;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
 
-        .my-button__img {
-            padding: 0;
-            margin-bottom: -3px;
-        }
+    .my-button__text {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      color: #333;
+      margin-left: 10px;
+    }
 
-        .my-button_small .my-button__text {
-            display: none;
-        }
+    .my-button__img {
+      padding: 0;
+      margin-bottom: -3px;
+    }
 
-        .my-button_medium .my-button__img {
-            display: none;
-        }
+    .my-button_small .my-button__text {
+      display: none;
+    }
 
-        .my-button_large .my-button__text {
-            margin-left: 10px;
-        }
-        .my-button-selected {
-            color: #333333;
-            background-color: #ffffff;
-            border: 2px dashed #333;
-        }
-        #suggest2 {
-            width: 300px;
-            margin: 5px;
-            margin-bottom: 0px;
-        }
+    .my-button_medium .my-button__img {
+      display: none;
+    }
 
+    .my-button_large .my-button__text {
+      margin-left: 10px;
+    }
+
+    .my-button-selected {
+      color: #333333;
+      background-color: #ffffff;
+      border: 2px dashed #333;
+    }
+
+    #suggest2 {
+      width: 300px;
+      margin: 5px;
+      margin-bottom: 0px;
+    }
   </style>
 </head>
 
@@ -132,7 +135,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-          <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
+          <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
           <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
           <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
           <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -142,9 +145,9 @@
     <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
   </nav>
 
- 
 
-<!--   
+
+  <!--   
   <section class="ftco-section contact-section">
     <div class="row block-9 justify-content-left mb-2">
       <div class="col-md-8 mb-md-2">
@@ -160,149 +163,166 @@
     </div>
   </section> -->
 
-  
+
+  <section class="ftco-section contact-section">
+    <div class="row block-9 justify-content-left mb-2">
+      <div class="col-md-8 mb-md-2">
+        <form class="show-map-regions">
+          <div class="show-map-regions">
+            <p class="show-regions"><a href="#regions_map">Посмотреть карту районов <br> Санкт-Петербурга</a></p><br>
+            <p class="show-regions"><a href="#section_table">Посмотреть количество гостиниц <br> и музеев в каждом районе</a></p>
+          </div>
+        </form>
+      </div>
+  </section>
 
 
-<!--//! это код для карты -->    
+
+
+
+  <!--//! это код для карты -->
   <div id="map"></div>
   <script type="text/javascript">
-    
     // Функция ymaps.ready() будет вызвана, когда    
     // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
     <?php
-        include "php_extra/db_connect.php";
-        $query_hotel = "SELECT hotel_name, hotel_type, hotel_region, hotel_site, hotel_email, hotel_koord_x, hotel_koord_y FROM gostinicy";
-        $hotel_name = [];
-        $hotel_type = [];
-        $hotel_region = [];
-        $hotel_site = [];
-        $hotel_email = [];
-        $hotel_koord_x = [];
-        $hotel_koord_y = [];
-        $sql_hotel = mysqli_query($link, $query_hotel);
-        while ($res_hotel = mysqli_fetch_array($sql_hotel)){
-            $hotel_name[] = (string)$res_hotel["hotel_name"];
-            $hotel_type[] = (string)$res_hotel["hotel_type"];
-            $hotel_region[] = (string)$res_hotel["hotel_region"];
-            $hotel_site[] = (string)$res_hotel["hotel_site"];
-            $hotel_email[] = (string)$res_hotel["hotel_email"];
-            $hotel_koord_x[] = (float)$res_hotel["hotel_koord_x"];
-            $hotel_koord_y[] = (float)$res_hotel["hotel_koord_y"];
-        }  
-        //$result = array_unique($hotel_region);
-        // var_dump($result);
-  
-    ?>
-    var hotel_name = JSON.parse('<?=json_encode($hotel_name)?>');
-    var hotel_type = JSON.parse('<?=json_encode($hotel_type)?>');
-    var hotel_region = JSON.parse('<?=json_encode($hotel_region)?>');
-    var hotel_site = JSON.parse('<?=json_encode($hotel_site)?>');
-    var hotel_email = JSON.parse('<?=json_encode($hotel_email)?>');
-    var hotel_koord_x = JSON.parse('<?=json_encode($hotel_koord_x)?>');
-    var hotel_koord_y = JSON.parse('<?=json_encode($hotel_koord_y)?>');
-    //document.write(hotel_koord_x);
-    var koordinates_hotel = [], i, j;
-    for (i=0; i<740; i++) {
-        koordinates_hotel.push(i);
-        koordinates_hotel[i] = [];
-        for (j=0; j<1; j++) {
-            koordinates_hotel[i].push(hotel_koord_x[i], hotel_koord_y[i]);
-        }
+    include "php_extra/db_connect.php";
+    $query_hotel = "SELECT hotel_name, hotel_type, hotel_region, hotel_site, hotel_email, hotel_koord_x, hotel_koord_y FROM gostinicy";
+    $hotel_name = [];
+    $hotel_type = [];
+    $hotel_region = [];
+    $hotel_site = [];
+    $hotel_email = [];
+    $hotel_koord_x = [];
+    $hotel_koord_y = [];
+    $sql_hotel = mysqli_query($link, $query_hotel);
+    while ($res_hotel = mysqli_fetch_array($sql_hotel)) {
+      $hotel_name[] = (string)$res_hotel["hotel_name"];
+      $hotel_type[] = (string)$res_hotel["hotel_type"];
+      $hotel_region[] = (string)$res_hotel["hotel_region"];
+      $hotel_site[] = (string)$res_hotel["hotel_site"];
+      $hotel_email[] = (string)$res_hotel["hotel_email"];
+      $hotel_koord_x[] = (float)$res_hotel["hotel_koord_x"];
+      $hotel_koord_y[] = (float)$res_hotel["hotel_koord_y"];
     }
+    //$result = array_unique($hotel_region);
+    // var_dump($result);
+
+    ?>
+    var hotel_name = JSON.parse('<?= json_encode($hotel_name) ?>');
+    var hotel_type = JSON.parse('<?= json_encode($hotel_type) ?>');
+    var hotel_region = JSON.parse('<?= json_encode($hotel_region) ?>');
+    var hotel_site = JSON.parse('<?= json_encode($hotel_site) ?>');
+    var hotel_email = JSON.parse('<?= json_encode($hotel_email) ?>');
+    var hotel_koord_x = JSON.parse('<?= json_encode($hotel_koord_x) ?>');
+    var hotel_koord_y = JSON.parse('<?= json_encode($hotel_koord_y) ?>');
+    //document.write(hotel_koord_x);
+    var koordinates_hotel = [],
+      i, j;
+    for (i = 0; i < 740; i++) {
+      koordinates_hotel.push(i);
+      koordinates_hotel[i] = [];
+      for (j = 0; j < 1; j++) {
+        koordinates_hotel[i].push(hotel_koord_x[i], hotel_koord_y[i]);
+      }
+    }
+
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
     var region_unique = hotel_region.filter(onlyUnique);
     var region_unique_sort = region_unique.sort();
-   
+
 
     <?php
-        include "php_extra/db_connect.php";
-        $query_museum = "SELECT museum_name, museum_type, museum_region, museum_site, museum_email, museum_koord_x, museum_koord_y FROM muzei";
-        $museum_name = [];
-        $museum_type = [];
-        $museum_region = [];
-        $museum_site = [];
-        $museum_email = [];
-        $museum_koord_x = [];
-        $museum_koord_y = [];
-        $sql_museum = mysqli_query($link, $query_museum);
-        while ($res_museum = mysqli_fetch_array($sql_museum)){
-            $museum_name[] = (string)$res_museum["museum_name"];
-            $museum_type[] = (string)$res_museum["museum_type"];
-            $museum_region[] = (string)$res_museum["museum_region"];
-            $museum_site[] = (string)$res_museum["museum_site"];
-            $museum_email[] = (string)$res_museum["museum_email"];
-            $museum_koord_x[] = (float)$res_museum["museum_koord_x"];
-            $museum_koord_y[] = (float)$res_museum["museum_koord_y"];
-        }  
-    ?>
-    var museum_name = JSON.parse('<?=json_encode($museum_name)?>');
-    var museum_type = JSON.parse('<?=json_encode($museum_type)?>');
-    var museum_region = JSON.parse('<?=json_encode($museum_region)?>');
-    var museum_site = JSON.parse('<?=json_encode($museum_site)?>');
-    var museum_email = JSON.parse('<?=json_encode($museum_email)?>');
-    var museum_koord_x = JSON.parse('<?=json_encode($museum_koord_x)?>');
-    var museum_koord_y = JSON.parse('<?=json_encode($museum_koord_y)?>');
-
-    var koordinates_museum = [], i, j;
-    for (i=0; i<214; i++) {
-        koordinates_museum.push(i);
-        koordinates_museum[i] = [];
-        for (j=0; j<1; j++) {
-            koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
-        }
+    include "php_extra/db_connect.php";
+    $query_museum = "SELECT museum_name, museum_type, museum_region, museum_site, museum_email, museum_koord_x, museum_koord_y FROM muzei";
+    $museum_name = [];
+    $museum_type = [];
+    $museum_region = [];
+    $museum_site = [];
+    $museum_email = [];
+    $museum_koord_x = [];
+    $museum_koord_y = [];
+    $sql_museum = mysqli_query($link, $query_museum);
+    while ($res_museum = mysqli_fetch_array($sql_museum)) {
+      $museum_name[] = (string)$res_museum["museum_name"];
+      $museum_type[] = (string)$res_museum["museum_type"];
+      $museum_region[] = (string)$res_museum["museum_region"];
+      $museum_site[] = (string)$res_museum["museum_site"];
+      $museum_email[] = (string)$res_museum["museum_email"];
+      $museum_koord_x[] = (float)$res_museum["museum_koord_x"];
+      $museum_koord_y[] = (float)$res_museum["museum_koord_y"];
     }
-    
-    <?php
-        include "php_extra/db_connect.php";
-        $query_object = "SELECT object_name, object_type, object_site, object_email, object_koord_x, object_koord_y FROM dostoprimechatelnosti";
-        $object_name = [];
-        $object_name_short = [];
-        $object_type = [];
-        $object_site = [];
-        $object_email = [];
-        $object_koord_x = [];
-        $object_koord_y = [];
-        $sql_object = mysqli_query($link, $query_object);
-        while ($res_object = mysqli_fetch_array($sql_object)){
-            $object_name[] = (string)$res_object["object_name"];
-            $object_name_short[] = (string)$res_object["object_name_short"];
-            $object_type[] = (string)$res_object["object_type"];
-            $object_site[] = (string)$res_object["object_site"];
-            $object_email[] = (string)$res_object["object_email"];
-            $object_koord_x[] = (float)$res_object["object_koord_x"];
-            $object_koord_y[] = (float)$res_object["object_koord_y"];
-        }  
     ?>
-    var object_name = JSON.parse('<?=json_encode($object_name)?>');
-    var object_name_short = JSON.parse('<?=json_encode($object_name_short)?>');
-    var object_type = JSON.parse('<?=json_encode($object_type)?>');
-    var object_site = JSON.parse('<?=json_encode($object_site)?>');
-    var object_email = JSON.parse('<?=json_encode($object_email)?>');
-    var object_koord_x = JSON.parse('<?=json_encode($object_koord_x)?>');
-    var object_koord_y = JSON.parse('<?=json_encode($object_koord_y)?>');
-    
-    // document.querySelector("#show_regions").onclick = function(){
-      //alert("Вы нажали на кнопку");
-      var koordinates_object = [], i, j;
-      for (i=0; i<136; i++) {
-          koordinates_object.push(i);
-          koordinates_object[i] = [];
-          for (j=0; j<1; j++) {
-              koordinates_object[i].push(object_koord_x[i], object_koord_y[i]);
-          }
+    var museum_name = JSON.parse('<?= json_encode($museum_name) ?>');
+    var museum_type = JSON.parse('<?= json_encode($museum_type) ?>');
+    var museum_region = JSON.parse('<?= json_encode($museum_region) ?>');
+    var museum_site = JSON.parse('<?= json_encode($museum_site) ?>');
+    var museum_email = JSON.parse('<?= json_encode($museum_email) ?>');
+    var museum_koord_x = JSON.parse('<?= json_encode($museum_koord_x) ?>');
+    var museum_koord_y = JSON.parse('<?= json_encode($museum_koord_y) ?>');
+
+    var koordinates_museum = [],
+      i, j;
+    for (i = 0; i < 214; i++) {
+      koordinates_museum.push(i);
+      koordinates_museum[i] = [];
+      for (j = 0; j < 1; j++) {
+        koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
       }
+    }
+
+    <?php
+    include "php_extra/db_connect.php";
+    $query_object = "SELECT object_name, object_type, object_site, object_email, object_koord_x, object_koord_y FROM dostoprimechatelnosti";
+    $object_name = [];
+    $object_name_short = [];
+    $object_type = [];
+    $object_site = [];
+    $object_email = [];
+    $object_koord_x = [];
+    $object_koord_y = [];
+    $sql_object = mysqli_query($link, $query_object);
+    while ($res_object = mysqli_fetch_array($sql_object)) {
+      $object_name[] = (string)$res_object["object_name"];
+      $object_name_short[] = (string)$res_object["object_name_short"];
+      $object_type[] = (string)$res_object["object_type"];
+      $object_site[] = (string)$res_object["object_site"];
+      $object_email[] = (string)$res_object["object_email"];
+      $object_koord_x[] = (float)$res_object["object_koord_x"];
+      $object_koord_y[] = (float)$res_object["object_koord_y"];
+    }
+    ?>
+    var object_name = JSON.parse('<?= json_encode($object_name) ?>');
+    var object_name_short = JSON.parse('<?= json_encode($object_name_short) ?>');
+    var object_type = JSON.parse('<?= json_encode($object_type) ?>');
+    var object_site = JSON.parse('<?= json_encode($object_site) ?>');
+    var object_email = JSON.parse('<?= json_encode($object_email) ?>');
+    var object_koord_x = JSON.parse('<?= json_encode($object_koord_x) ?>');
+    var object_koord_y = JSON.parse('<?= json_encode($object_koord_y) ?>');
+
+    // document.querySelector("#show_regions").onclick = function(){
+    //alert("Вы нажали на кнопку");
+    var koordinates_object = [],
+      i, j;
+    for (i = 0; i < 136; i++) {
+      koordinates_object.push(i);
+      koordinates_object[i] = [];
+      for (j = 0; j < 1; j++) {
+        koordinates_object[i].push(object_koord_x[i], object_koord_y[i]);
+      }
+    }
 
 
 
-      
 
-    <?php 
-      // if (isset($_POST['show_regions'])) {
-      //   print_r($_POST['suggest2']);
-      //   // header("Location: ../pesonal_page.php");
-      // }
+
+    <?php
+    // if (isset($_POST['show_regions'])) {
+    //   print_r($_POST['suggest2']);
+    //   // header("Location: ../personal_page.php");
+    // }
     ?>
 
     // let click_1 = document.getElementById('show_regions');
@@ -317,263 +337,259 @@
 
 
 
-  
+
     ymaps.ready(init);
-    function init(){
+
+    function init() {
       // e.preventDefault();
-        // Создание карты.
-        var myMap = new ymaps.Map("map", {
+      // Создание карты.
+      var myMap = new ymaps.Map("map", {
             center: [59.94506272, 30.09158751],
             zoom: 9,
             // controls: ['zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl', 'routeButtonControl']
-            controls: ['zoomControl', 'typeSelector',  'fullscreenControl']
-          
-        }, //  {
-        //     searchControlProvider: 'yandex#search'
-        // }
+            controls: ['zoomControl', 'typeSelector', 'fullscreenControl']
+
+          }, //  {
+          //     searchControlProvider: 'yandex#search'
+          // }
         ),
         clusterer = new ymaps.Clusterer({
-            preset: 'islands#invertedVioletClusterIcons',
-            clusterHideIconOnBalloonOpen: false,
-            geoObjectHideIconOnBalloonOpen: false
+          preset: 'islands#invertedVioletClusterIcons',
+          clusterHideIconOnBalloonOpen: false,
+          geoObjectHideIconOnBalloonOpen: false
         });
-        // objectManager = new ymaps.ObjectManager();
-        // $.getJSON('regions.json')
-        // .done(function (geoJson) {
-        //     // Добавляем описание объектов в формате JSON в менеджер объектов.
-        //     objectManager.add(geoJson);
-        //     // Добавляем объекты на карту.
-        //     myMap.geoObjects.add(objectManager);
-        // });
 
 
 
-        // var tileUrlTemplate = 'hotspot_data/%z/tile_x=%x&y=%y',
-        // // Шаблон callback-функции, в которую сервер будет оборачивать данные тайла.
-        // // Пример callback-функции после подстановки - 'testCallback_tile_x_1_y_2_z_9'.
-        // keyTemplate = 'testCallback_tile_%c',
-        // // URL тайлов картиночного слоя.
-        // // Пример URL после подстановки -
-        // // '.../hotspot_layer/images/9/tile_x=1&y=2.png'.
-        // imgUrlTemplate = 'images/%z/tile_x=%x&y=%y.png',
-        // // Создадим источник данных слоя активных областей.
-        // objSource = new ymaps.hotspot.ObjectSource(tileUrlTemplate, keyTemplate),
-        // // Создаем картиночный слой и слой активных областей.
-        // imgLayer = new ymaps.Layer(imgUrlTemplate, {tileTransparent: true}),
-        // hotspotLayer = new ymaps.hotspot.Layer(objSource, {cursor: 'help'});
-        // // Добавляем слои на карту.
-        // myMap.layers.add(hotspotLayer);
-        // myMap.layers.add(imgLayer);
-        // // Задаем собственный провайдер поисковых подсказок и максимальное количество результатов.
-        // var suggestView2 = new ymaps.SuggestView('suggest2', {provider: provider, results: 3});
-       
+      // var tileUrlTemplate = 'hotspot_data/%z/tile_x=%x&y=%y',
+      // // Шаблон callback-функции, в которую сервер будет оборачивать данные тайла.
+      // // Пример callback-функции после подстановки - 'testCallback_tile_x_1_y_2_z_9'.
+      // keyTemplate = 'testCallback_tile_%c',
+      // // URL тайлов картиночного слоя.
+      // // Пример URL после подстановки -
+      // // '.../hotspot_layer/images/9/tile_x=1&y=2.png'.
+      // imgUrlTemplate = 'images/%z/tile_x=%x&y=%y.png',
+      // // Создадим источник данных слоя активных областей.
+      // objSource = new ymaps.hotspot.ObjectSource(tileUrlTemplate, keyTemplate),
+      // // Создаем картиночный слой и слой активных областей.
+      // imgLayer = new ymaps.Layer(imgUrlTemplate, {tileTransparent: true}),
+      // hotspotLayer = new ymaps.hotspot.Layer(objSource, {cursor: 'help'});
+      // // Добавляем слои на карту.
+      // myMap.layers.add(hotspotLayer);
+      // myMap.layers.add(imgLayer);
+      // // Задаем собственный провайдер поисковых подсказок и максимальное количество результатов.
+      // var suggestView2 = new ymaps.SuggestView('suggest2', {provider: provider, results: 3});
 
-        //!
-        var myClusterer_hotel = new ymaps.Clusterer();
-        for (var i = 0; i<koordinates_hotel.length; i++) {
-          myPlacemark_hotel = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
+
+      //!
+      var myClusterer_hotel = new ymaps.Clusterer();
+      for (var i = 0; i < koordinates_hotel.length; i++) {
+        myPlacemark_hotel = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: hotel_name[i],
-              balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>', '<form method="post" action="map_leisure.php"><button id="show_regions" name="show_regions" class="custom-btn button1"><span>В избранное</span></button></form>' ].join(''),
+              balloonContentBody: [hotel_type[i], '<br/>', hotel_email[i], '<br/>', '<form method="post" action="map_leisure.php"><button id="add_fav_hotel" name="add_fav_hotel" class="custom-btn button1"><span>В избранное</span></button></form>'].join(''),
               balloonContentFooter: hotel_site[i],
               //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-              hintContent: hotel_region[i] },
+              hintContent: hotel_region[i]
+            },
             // }, {
             //   preset: 'islands#blueIcon'
             // }, 
             {
-            // Опции.
-            // Необходимо указать данный тип макета.
-            iconLayout: 'default#image',
-            // Своё изображение иконки метки.
-            iconImageHref: 'images/hotel_loc.png',
-            // Размеры метки.
-            iconImageSize: [30, 30],
-            // Смещение левого верхнего угла иконки относительно
-            // её "ножки" (точки привязки).
-            iconImageOffset: [-5, -38]
-        }),
-        
+              // Опции.
+              // Необходимо указать данный тип макета.
+              iconLayout: 'default#image',
+              // Своё изображение иконки метки.
+              iconImageHref: 'images/hotel_loc.png',
+              // Размеры метки.
+              iconImageSize: [30, 30],
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+              iconImageOffset: [-5, -38]
+            }),
+
 
           console.log(myPlacemark_hotel);
-          myMap.geoObjects.add(myPlacemark_hotel);
-          myClusterer_hotel.add(myPlacemark_hotel);
-        
-        };
-        myMap.geoObjects.add(myClusterer_hotel);
-        
-        //! 
-        var myClusterer_museum = new ymaps.Clusterer();
-        for (var i = 0; i<koordinates_museum.length; i++) {
-          console.log(koordinates_museum[i][0]);
-          var coo = koordinates_museum[i];
-          console.log(coo);
-          myPlacemark_museum = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
+        myMap.geoObjects.add(myPlacemark_hotel);
+        myClusterer_hotel.add(myPlacemark_hotel);
+
+      };
+      myMap.geoObjects.add(myClusterer_hotel);
+
+      //! 
+      var myClusterer_museum = new ymaps.Clusterer();
+      for (var i = 0; i < koordinates_museum.length; i++) {
+        console.log(koordinates_museum[i][0]);
+        var coo = koordinates_museum[i];
+        console.log(coo);
+        myPlacemark_museum = new ymaps.Placemark([koordinates_museum[i][0], koordinates_museum[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: museum_name[i],
-              balloonContentBody: [museum_type[i], '<br/>', museum_email[i], '<br/>' ].join(''),
+              balloonContentBody: [museum_type[i], '<br/>', museum_email[i], '<br/>'].join(''),
               balloonContentFooter: museum_site[i],
               //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-              hintContent: museum_region[i] },
+              hintContent: museum_region[i]
+            },
             // }, {
             //   preset: 'islands#redIcon'
             // }, 
             {
-            // Опции.
-            // Необходимо указать данный тип макета.
-            iconLayout: 'default#image',
-            // Своё изображение иконки метки.
-            iconImageHref: 'images/museum_loc.png',
-            // Размеры метки.
-            iconImageSize: [30, 30],
-            // Смещение левого верхнего угла иконки относительно
-            // её "ножки" (точки привязки).
-            iconImageOffset: [-5, -38]
-        }),
+              // Опции.
+              // Необходимо указать данный тип макета.
+              iconLayout: 'default#image',
+              // Своё изображение иконки метки.
+              iconImageHref: 'images/museum_loc.png',
+              // Размеры метки.
+              iconImageSize: [30, 30],
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+              iconImageOffset: [-5, -38]
+            }),
 
           console.log(myPlacemark_museum);
-          myMap.geoObjects.add(myPlacemark_museum);
-          myClusterer_museum.add(myPlacemark_museum);
-          // let click_2 = document.getElementById('show_regions');
-          // click_2.onclick = function() {
-          //     var suggest2 = document.getElementById('suggest2').value;
-          //     map(myClusterer_museum);
-          // }
-        };
-        
-        myMap.geoObjects.add(myClusterer_museum);
+        myMap.geoObjects.add(myPlacemark_museum);
+        myClusterer_museum.add(myPlacemark_museum);
         // let click_2 = document.getElementById('show_regions');
         // click_2.onclick = function() {
         //     var suggest2 = document.getElementById('suggest2').value;
         //     map(myClusterer_museum);
         // }
+      };
+
+      myMap.geoObjects.add(myClusterer_museum);
+      // let click_2 = document.getElementById('show_regions');
+      // click_2.onclick = function() {
+      //     var suggest2 = document.getElementById('suggest2').value;
+      //     map(myClusterer_museum);
+      // }
 
 
 
-          //!
-        var myClusterer_object = new ymaps.Clusterer();
-        for (var i = 0; i<koordinates_object.length; i++) {
-          console.log(koordinates_object[i][0]);
-          var koord_object = koordinates_object[i];
-          console.log(koord_object);
-          myPlacemark_object = new ymaps.Placemark([koordinates_object[i][0], koordinates_object[i][1]], {
+      //!
+      var myClusterer_object = new ymaps.Clusterer();
+      for (var i = 0; i < koordinates_object.length; i++) {
+        console.log(koordinates_object[i][0]);
+        var koord_object = koordinates_object[i];
+        console.log(koord_object);
+        myPlacemark_object = new ymaps.Placemark([koordinates_object[i][0], koordinates_object[i][1]], {
               // Чтобы балун и хинт открывались на метке, необходимо задать ей определенные свойства.
               balloonContentHeader: object_name[i],
-              balloonContentBody: [object_type[i], '<br/>', object_email[i], '<br/>' ].join(''),
+              balloonContentBody: [object_type[i], '<br/>', object_email[i], '<br/>'].join(''),
               balloonContentFooter: object_site[i],
               //clusterCaption: "<strong><s>Еще</s> одна</strong>",
-              hintContent: object_name_short[i] },
+              hintContent: object_name_short[i]
+            },
             // }, {
             //   preset: 'islands#redIcon'
             // }, 
             {
-            // Опции.
-            // Необходимо указать данный тип макета.
-            iconLayout: 'default#image',
-            // Своё изображение иконки метки.
-            iconImageHref: 'images/leisure_loc.png',
-            // Размеры метки.
-            iconImageSize: [30, 30],
-            // Смещение левого верхнего угла иконки относительно
-            // её "ножки" (точки привязки).
-            iconImageOffset: [-5, -38]
-        }),
+              // Опции.
+              // Необходимо указать данный тип макета.
+              iconLayout: 'default#image',
+              // Своё изображение иконки метки.
+              iconImageHref: 'images/leisure_loc.png',
+              // Размеры метки.
+              iconImageSize: [30, 30],
+              // Смещение левого верхнего угла иконки относительно
+              // её "ножки" (точки привязки).
+              iconImageOffset: [-5, -38]
+            }),
           console.log(myPlacemark_object);
-          myMap.geoObjects.add(myPlacemark_object);
-          myClusterer_object.add(myPlacemark_object);
-        };
-        myMap.geoObjects.add(myClusterer_object);
+        myMap.geoObjects.add(myPlacemark_object);
+        myClusterer_object.add(myPlacemark_object);
+      };
+      myMap.geoObjects.add(myClusterer_object);
 
 
-        //!
-        // let click_1 = document.getElementById('show_regions');
-        // click_1.onclick = function() {
-        //     var suggest2 = document.getElementById('suggest2').value;
-        //     map(myClusterer, myClusterer2, myClusterer3);
-        //     e.preventDefault();
-        // }
+      //!
+      // let click_1 = document.getElementById('show_regions');
+      // click_1.onclick = function() {
+      //     var suggest2 = document.getElementById('suggest2').value;
+      //     map(myClusterer, myClusterer2, myClusterer3);
+      //     e.preventDefault();
+      // }
 
-        var map = function(cl1, cl2, cl3) {
-          var result = myMap.geoObjects.add(cl1);
-          var result = myMap.geoObjects.add(cl2);
-          var result = myMap.geoObjects.add(cl3);
-          return result;
-        }
+      var map = function(cl1, cl2, cl3) {
+        var result = myMap.geoObjects.add(cl1);
+        var result = myMap.geoObjects.add(cl2);
+        var result = myMap.geoObjects.add(cl3);
+        return result;
+      }
 
-        // var map = function(cl1) {
-        //   var result = myMap.geoObjects.add(cl1);
-        //   return result;
-        // }
-        
+      // var map = function(cl1) {
+      //   var result = myMap.geoObjects.add(cl1);
+      //   return result;
+      // }
 
 
-    //     ButtonLayout = ymaps.templateLayoutFactory.createClass([
-    //         '<div title="{{ data.title }}" class="my-button ',
-    //         '{% if state.size == "small" %}my-button_small{% endif %}',
-    //         '{% if state.size == "medium" %}my-button_medium{% endif %}',
-    //         '{% if state.size == "large" %}my-button_large{% endif %}',
-    //         '{% if state.selected %} my-button-selected{% endif %}">',
-    //         '<img class="my-button__img" src="{{ data.image }}" alt="{{ data.title }}">',
-    //         '<span class="my-button__text">{{ data.content }}</span>',
-    //         '</div>'
-    //     ].join('')),
 
-    //     hotel_button = new ymaps.control.Button({
-    //         data: {
-    //             content: "Показать гостиницы",
-    //             image: 'images/hotel_loc_min.png',
-    //             title: "Гостиницы"
-    //         },
-    //         options: {
-    //             layout: ButtonLayout,
-    //             maxWidth: [170, 190, 220]
-    //         }
-    //     });
+      //     ButtonLayout = ymaps.templateLayoutFactory.createClass([
+      //         '<div title="{{ data.title }}" class="my-button ',
+      //         '{% if state.size == "small" %}my-button_small{% endif %}',
+      //         '{% if state.size == "medium" %}my-button_medium{% endif %}',
+      //         '{% if state.size == "large" %}my-button_large{% endif %}',
+      //         '{% if state.selected %} my-button-selected{% endif %}">',
+      //         '<img class="my-button__img" src="{{ data.image }}" alt="{{ data.title }}">',
+      //         '<span class="my-button__text">{{ data.content }}</span>',
+      //         '</div>'
+      //     ].join('')),
 
-    // myMap.controls.add(hotel_button, {
-    //     position: {
-    //         right: 145,
-    //         top: 9
-    //     }
-    // });
+      //     hotel_button = new ymaps.control.Button({
+      //         data: {
+      //             content: "Показать гостиницы",
+      //             image: 'images/hotel_loc_min.png',
+      //             title: "Гостиницы"
+      //         },
+      //         options: {
+      //             layout: ButtonLayout,
+      //             maxWidth: [170, 190, 220]
+      //         }
+      //     });
 
-    // museum_button = new ymaps.control.Button({
-    //         data: {
-    //             content: "Показать музеи",
-    //             image: 'images/museum_loc_min.png',
-    //             title: "Музеи"
-    //         },
-    //         options: {
-    //             layout: ButtonLayout,
-    //             maxWidth: [170, 190, 220]
-    //         }
-    //     });
+      // myMap.controls.add(hotel_button, {
+      //     position: {
+      //         right: 145,
+      //         top: 9
+      //     }
+      // });
 
-    // myMap.controls.add(museum_button, {
-    //     position: {
-    //         right: 335,
-    //         top: 9
-    //     }
-    // });
+      // museum_button = new ymaps.control.Button({
+      //         data: {
+      //             content: "Показать музеи",
+      //             image: 'images/museum_loc_min.png',
+      //             title: "Музеи"
+      //         },
+      //         options: {
+      //             layout: ButtonLayout,
+      //             maxWidth: [170, 190, 220]
+      //         }
+      //     });
 
-    // object_button = new ymaps.control.Button({
-    //         data: {
-    //             content: "Показать достопримечательности",
-    //             image: 'images/leisure_loc_min.png',
-    //             title: "Музеи"
-    //         },
-    //         options: {
-    //             layout: ButtonLayout,
-    //             maxWidth: [170, 190, 220]
-    //         }
-    //     });
+      // myMap.controls.add(museum_button, {
+      //     position: {
+      //         right: 335,
+      //         top: 9
+      //     }
+      // });
 
-    // myMap.controls.add(object_button, {
-    //     position: {
-    //         right: 495,
-    //         top: 9
-    //     }
-    // });
+      // object_button = new ymaps.control.Button({
+      //         data: {
+      //             content: "Показать достопримечательности",
+      //             image: 'images/leisure_loc_min.png',
+      //             title: "Музеи"
+      //         },
+      //         options: {
+      //             layout: ButtonLayout,
+      //             maxWidth: [170, 190, 220]
+      //         }
+      //     });
+
+      // myMap.controls.add(object_button, {
+      //     position: {
+      //         right: 495,
+      //         top: 9
+      //     }
+      // });
 
     }
     // find = function (hotel_region, find) {
@@ -614,34 +630,52 @@
 
     // var jobValue = document.getElementById('txtJob').value;
     // alert(jobValue);
+    <?php
 
+    $arr_hotel = [];
     
-    
+    if (isset($_POST['add_fav_hotel'])) {
+      include "php_extra/db_connect.php";
+      if (!empty($_SESSION['auth'])) { 
+        // echo 
+      $query = "SELECT fav_objects.user_id, fav_objects.hotel_id FROM `fav_objects` join fav_museums on fav_objects.user_id=fav_museums.user_id where fav_objects.hotel_id=fav_museums.hotel_id";
+      
+      }
+      else {echo "Чтобы добавлять объекты в избранное, нужно авторизоваться";}
+    }
+    ?>
   </script>
 
-<section>
-  <div class="regions_map">
-    <h3>Районы Санкт-Петербурга</h3>
-    <img src="images/regions_map.jpg" height="600">
-  </div>
-</section>
+  <section>
+    <div class="regions_map" id="regions_map">
+      <h3>Районы Санкт-Петербурга</h3>
+      <img src="images/regions_map.jpg" height="600">
+    </div>
+  </section>
 
-<section class="section_table">
-<div class = "table">
-    <table class="table_db">
-    <thead><tr><th>Район</th><th>Количество гостиниц</th><th>Район</th><th>Количество музеев</th></tr></thead>.
-    <?php
-      require "php_extra/db_connect.php";
-      $sql = mysqli_query($link, 'SELECT * FROM `amount`');
+  <section class="section_table" id="section_table">
+    <div class="table">
+      <table class="table_db">
+        <thead>
+          <tr>
+            <th>Район</th>
+            <th>Количество гостиниц</th>
+            <th>Район</th>
+            <th>Количество музеев</th>
+          </tr>
+        </thead>.
+        <?php
+        require "php_extra/db_connect.php";
+        $sql = mysqli_query($link, 'SELECT * FROM `amount`');
         while ($result = mysqli_fetch_array($sql)) {
-          echo '<tr>'.'<td>' .$result['region_h'].'</td>'.'<td>' .$result['amount_h'].'</td>'.'<td>' .$result['region_m'].'</td>'.'<td>' .$result['amount_m'].'</td>'.'</tr>';
-        }  
-    ?>
-    </table>
-</div>
-</section>
+          echo '<tr>' . '<td>' . $result['region_h'] . '</td>' . '<td>' . $result['amount_h'] . '</td>' . '<td>' . $result['region_m'] . '</td>' . '<td>' . $result['amount_m'] . '</td>' . '</tr>';
+        }
+        ?>
+      </table>
+    </div>
+  </section>
 
-    
+
 
 
 
@@ -691,12 +725,15 @@
       <div class="row">
         <div class="col-md-12 text-center">
           <div class="sourse-list">
-              <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
-              <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
-              <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
-              <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
+            <a href="https://classif.gov.spb.ru/irsi/?category=17">Источник открытых данных: </a>
+            <a href="https://classif.gov.spb.ru/irsi/7842489089-gostinicy/structure_version/153/">Гостиницы, </a>
+            <a href="https://classif.gov.spb.ru/irsi/7842489089-dostoprimechatelnosti/structure_version/157/">Достопримечательности, </a>
+            <a href="https://classif.gov.spb.ru/irsi/7842489089-muzei/structure_version/569/">Музеи</a>
           </div>
-          <p>Copyright &copy; А.С.Быкасова, <script>document.write(new Date().getFullYear());</script></p>
+          <p>Copyright &copy; А.С.Быкасова, <script>
+              document.write(new Date().getFullYear());
+            </script>
+          </p>
         </div>
       </div>
     </div>

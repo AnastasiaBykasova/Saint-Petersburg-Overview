@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Связаться с нами</title>
+    <title>Смена пароля</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -47,21 +47,29 @@
       <div class="container">
         <div class="row block-9 justify-content-center mb-5">
           <div class="col-md-8 mb-md-5">
-          	<h2 class="text-center">Изменение данных</h2>
+          	<h2 class="text-center">Смена пароля</h2>
             <form class="bg-light p-5 contact-form" action="" method="post" id="contactForm" novalidate="novalidate">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <div class="form-group">
                         <input class="form-control valid" autocomplete="off" name="email" id="email" type="email" placeholder="Email">
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <div class="form-group">
+                        <input class="form-control" autocomplete="off" name="old_password" id="subject" type="password" placeholder="Старый пароль">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-group">
-                        <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Пароль">
+                        <input class="form-control" autocomplete="off" name="password" id="subject" type="password" placeholder="Новый пароль">
                     </div>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary py-3 px-5">Отправить</button>
                 </div>
+                <!-- <div class="form-group"> -->
+                  <!-- <p class="if_no_acc">Забыли пароль? <a href="restore_page.php">Восстановить доступ</a></p> -->
+                <!-- </div> -->
           </form>
             <?php
               require "php_extra/change.php";

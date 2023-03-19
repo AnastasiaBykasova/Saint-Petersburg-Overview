@@ -30,7 +30,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
 	          <li class="nav-item active"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -50,7 +50,7 @@
           <div class="col-md-6 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end">
               <div class="text">
-                <h3 class="heading"><a href="#">Выбрать гостиницу</a></h3>
+                <h3 class="heading"><a href="map_leisure.php">Выбрать гостиницу</a></h3>
                 <a href="map_leisure.php" class="block-20 img" style="background-image: url('images/image_1.png');">
 	              </a>
                 <p>Гостиницы Санкт-Петербурга, которые расположены в районах с наибольшим количеством близлежащих достопримечательностей.</p>
@@ -62,7 +62,7 @@
             echo '<div class="col-md-6 d-flex ftco-animate">
               <div class="blog-entry justify-content-end">
                 <div class="text">
-                  <h3 class="heading"><a href="#">Выбрать, куда сходить</a></h3>
+                  <h3 class="heading"><a href="map.php">Выбрать, куда сходить</a></h3>
                   <a href="map.php" class="block-20 img" style="background-image: url(images/image_2.jpg);">
                   </a>
                   <p>Ближайшие достопримечательности/музеи для выбранной гостиницы и маршрут к ним.</p>

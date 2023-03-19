@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Гостиницы</title>
   <meta charset="utf-8">
@@ -18,7 +17,6 @@
   <link rel="stylesheet" href="css/flaticon.css">
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
-
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8187bf9-d435-41c6-8c4c-cdaefed6b329" type="text/javascript"></script>
   <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
   <!-- <script src="js_files/map_leisure.js" type="text/javascript"></script> -->
@@ -30,7 +28,6 @@
       width: 100%;
       height: 100%;
     }
-
     #map {
       margin-top: 110px;
       width: 80%;
@@ -40,32 +37,27 @@
       margin-left: auto;
       margin-right: auto
     }
-
     #language {
       cursor: pointer;
       margin-left: 5px;
       font-size: 100%;
     }
-
     a {
       color: #04b;
       /* Цвет ссылки */
       text-decoration: none;
       /* Убираем подчеркивание у ссылок */
     }
-
     a:visited {
       color: #04b;
       /* Цвет посещённой ссылки */
     }
-
     a:hover {
       color: #f50000;
       /* Цвет ссылки при наведении на нее курсора мыши */
     }
   </style>
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
@@ -73,20 +65,20 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Меню
       </button>
-
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-          <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
-          <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
-          <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
-          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+            <li class="nav-item"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="auth_page.php" class="nav-link">Авторизация</a></li>
+            <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
+            <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
+            <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
+  
         </ul>
       </div>
     </div>
     <!-- <a href="https://mospolytech.ru/"><img src="images/logo_poly_white.png" height="50"></a> -->
   </nav>
-
 <!--//! это код для карты -->
   <div id="map"></div>
   <script type="text/javascript">
@@ -121,8 +113,6 @@
     var hotel_koord_x = JSON.parse('<?=json_encode($hotel_koord_x)?>');
     var hotel_koord_y = JSON.parse('<?=json_encode($hotel_koord_y)?>');
     //document.write(hotel_koord_x);
-
-
     var koordinates_hotel = [], i, j;
     for (i=0; i<740; i++) {
         koordinates_hotel.push(i);
@@ -136,7 +126,6 @@
     }
     // var region_unique = hotel_region.filter(onlyUnique);
     // document.write(region_unique.sort());
-
     <?php
         include "php_extra/db_connect.php";
         $query_museum = "SELECT museum_name, museum_type, museum_region, museum_site, museum_email, museum_koord_x, museum_koord_y FROM muzei";
@@ -165,8 +154,6 @@
     var museum_email = JSON.parse('<?=json_encode($museum_email)?>');
     var museum_koord_x = JSON.parse('<?=json_encode($museum_koord_x)?>');
     var museum_koord_y = JSON.parse('<?=json_encode($museum_koord_y)?>');
-
-
     var koordinates_museum = [], i, j;
     for (i=0; i<214; i++) {
         koordinates_museum.push(i);
@@ -175,9 +162,6 @@
             koordinates_museum[i].push(museum_koord_x[i], museum_koord_y[i]);
         }
     }
-
-
-
     <?php
         include "php_extra/db_connect.php";
         $query_object = "SELECT object_name, object_type, object_site, object_email, object_koord_x, object_koord_y FROM dostoprimechatelnosti";
@@ -209,8 +193,6 @@
     
     // document.querySelector("#show_regions").onclick = function(){
       //alert("Вы нажали на кнопку");
-
-
       var koordinates_object = [], i, j;
       for (i=0; i<136; i++) {
           koordinates_object.push(i);
@@ -219,48 +201,8 @@
               koordinates_object[i].push(object_koord_x[i], object_koord_y[i]);
           }
       }
-
-
-
-
-      <?php
-        include "php_extra/db_connect.php";
-        $query_fav_h = "SELECT gostinicy.hotel_id, hotel_name, hotel_koord_x, hotel_koord_y FROM gostinicy JOIN favourites ON gostinicy.hotel_id=favourites.hotel_id";
-        $h_name = [];
-        $h_koord_x = [];
-        $h_koord_y = [];
-        $sql_fav = mysqli_query($link, $query_fav_h);
-        while ($res_fav = mysqli_fetch_array($sql_fav)){
-            $h_name[] = (string)$res_fav["hotel_name"];
-            $h_koord_x[] = (float)$res_fav["hotel_koord_x"];
-            $h_koord_y[] = (float)$res_fav["hotel_koord_y"];
-        }  
-    ?>
-    var h_name = JSON.parse('<?=json_encode($h_name)?>');
-    var h_koord_x = JSON.parse('<?=json_encode($h_koord_x)?>');
-    var h_koord_y = JSON.parse('<?=json_encode($h_koord_y)?>');
     
-      var fav_h = [], i, j;
-      for (i=0; i<740; i++) {
-        fav_h.push(i);
-        fav_h[i] = [];
-          for (j=0; j<1; j++) {
-            fav_h[i].push(h_koord_x[i], h_koord_y[i]);
-          }
-      }
-
-    
-
-
-
     ymaps.ready(init);
-
-      // var favourites = [];
-      // favourites[0] = "59.920853, 29.777759";
-      // for (i=1; i<fav_h.length; i++) {
-      //   favourites[i] = hotel_koord_x[i-1] + ', ' + hotel_koord_y[i-1];      //fav_h[i-1]//+', '+koordinates_hotel[i-1];
-      // }
-      // console.log(favourites);
 
     function init(){
 
@@ -271,6 +213,17 @@
         pointD = hotel[3],
         multiRoute = new ymaps.multiRouter.MultiRoute({
             referencePoints: [pointA, pointB, pointC, pointD],
+      // var pointA = [59.888284,30.463021],
+      //   pointB = [59.92265733, 30.288223059],
+      //   /**
+      //    * Создаем мультимаршрут.
+      //    * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRoute.xml
+      //    */
+      //   multiRoute = new ymaps.multiRouter.MultiRoute({
+      //       referencePoints: [
+      //           pointA,
+      //           pointB
+      //       ],
             params: {
                 //Тип маршрутизации - пешеходная маршрутизация.
                 routingMode: 'pedestrian'
@@ -279,22 +232,18 @@
             // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
             boundsAutoApply: true
         });
-
     // Создаем кнопку.
     var changePointsButton = new ymaps.control.Button({
         data: {content: "Поменять местами точки А и В"},
         options: {selectOnClick: true}
     });
-
     // Объявляем обработчики для кнопки.
     changePointsButton.events.add('select', function () {
         multiRoute.model.setReferencePoints([pointB, pointA]);
     });
-
     changePointsButton.events.add('deselect', function () {
         multiRoute.model.setReferencePoints([pointA, pointB]);
     });
-
     // Создаем карту с добавленной на нее кнопкой.
     // var myMap = new ymaps.Map('map', {
     //     center: [55.739625, 37.54120],
@@ -303,65 +252,36 @@
     // }, {
     //     buttonMaxWidth: 300
     // });
-
     // Создание карты.
     var myMap = new ymaps.Map("map", {
             center: [59.94506272, 30.09158751],
             zoom: 9,
             // controls: ['zoomControl']
             controls: [changePointsButton, 'zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl', 'routeButtonControl']
-
           // }, {
           //   searchControlProvider: 'yandex#search'
         });
         // hotelButton = new ymaps.control.Button("Кнопка");
         // map.controls.add(hotelButton, {float: 'right'});
-
     // Добавляем мультимаршрут на карту.
     myMap.geoObjects.add(multiRoute);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Создание карты.
         // var myMap = new ymaps.Map("map", {
         //     center: [59.94506272, 30.09158751],
         //     zoom: 9,
         //     // controls: ['zoomControl']
         //     controls: ['zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl', 'routeButtonControl']
-
         //   // }, {
         //   //   searchControlProvider: 'yandex#search'
         // });
         // hotelButton = new ymaps.control.Button("Кнопка");
         // map.controls.add(hotelButton, {float: 'right'});
-
-
-
         // hotelButton = new ymaps.control.Button({
         //   data: {
         //     content: "Кнопка",
         //     image: "images/hotel_loc.png"
         //   }});
         // map.controls.add(hotelButton, {float: 'right'});
-
-
-
         // for (var i = 0; i<koordinates_hotel.length; i++) {
         //   var coo = koordinates_hotel[i];
         //   myPlacemark = new ymaps.Placemark([koordinates_hotel[i][0], koordinates_hotel[i][1]]);
@@ -376,10 +296,8 @@
         //   .add('mouseleave', function (e) {
         //       e.get('target').options.unset('preset');
         //   });
-
         // }
         
-
         var myClusterer = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_hotel.length; i++) {
           console.log(koordinates_hotel[i][0]);
@@ -407,19 +325,12 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
-
           console.log(myPlacemark);
           myMap.geoObjects.add(myPlacemark);
           myClusterer.add(myPlacemark);
         };
         
         // myMap.geoObjects.add(myClusterer);
-
-
-
-
-
-
         var myClusterer2 = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_museum.length; i++) {
           console.log(koordinates_museum[i][0]);
@@ -447,17 +358,12 @@
             // её "ножки" (точки привязки).
             iconImageOffset: [-5, -38]
         }),
-
           console.log(myPlacemark);
           myMap.geoObjects.add(myPlacemark);
           myClusterer2.add(myPlacemark);
         };
         
         // myMap.geoObjects.add(myClusterer2);
-
-
-
-
         var myClusterer3 = new ymaps.Clusterer();
         for (var i = 0; i<koordinates_object.length; i++) {
           console.log(koordinates_object[i][0]);
@@ -488,18 +394,9 @@
           console.log(myPlacemark3);
           myMap.geoObjects.add(myPlacemark3);
           myClusterer3.add(myPlacemark3);
-
         };
         // myMap.geoObjects.add(myClusterer3);
         
-
-
-
-
-
-
-
-
     //     objectManager = new ymaps.ObjectManager({
     //         // Чтобы метки начали кластеризоваться, выставляем опцию.
     //         clusterize: true,
@@ -509,8 +406,6 @@
     //         clusterIconLayout: "default#pieChart"
     //     });
     //     myMap.geoObjects.add(objectManager);
-
-
     //     // Создадим пункты выпадающего списка.
     //     //var listBoxItems = ['Адмиралтейский','Василеостровский','Выборгский','Калининский','Кировский','Колпинский','Красногвардейский','Красносельский','Кронштадтский','Курортный','Курортрный','Московский','Невский','Петроградский','Петродворцовый','Приморский','Пушкинский','Фрунзенский','Центральный']
     //     var listBoxItems = ['Гостиницы', 'Достопримечательности', '']
@@ -543,7 +438,6 @@
     //         }
     //     });
     // myMap.controls.add(listBoxControl);
-
     // // Добавим отслеживание изменения признака, выбран ли пункт списка.
     // listBoxControl.events.add(['select', 'deselect'], function (e) {
     //     var listBoxItem = e.get('target');
@@ -551,42 +445,26 @@
     //     filters[listBoxItem.data.get('content')] = listBoxItem.isSelected();
     //     listBoxControl.state.set('filters', filters);
     // });
-
     // var filterMonitor = new ymaps.Monitor(listBoxControl.state);
     // filterMonitor.add('filters', function (filters) {
     //     // Применим фильтр.
     //     objectManager.setFilter(getFilterFunction(filters));
     // });
-
     // function getFilterFunction(categories) {
     //     return function (obj) {
     //         var content = obj.properties.balloonContent;
     //         return categories[content]
     //     }
     // }
-
-
     // Создаем коллекцию.
     
     
         
     }
-
     
-
-
-
-
-
     
   </script>
-
-
-
     
-
-
-
   <footer class="ftco-footer ftco-section">
     <div class="container">
       <div class="row mb-5">
@@ -646,7 +524,6 @@
       </div>
     </div>
   </footer>
-
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
@@ -668,7 +545,5 @@
   <script src="js/scrollax.min.js"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
-
 </body>
-
 </html>

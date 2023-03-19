@@ -30,7 +30,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item"><a href="pesonal_page.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
 	          <li class="nav-item active"><a href="help.php" class="nav-link">Помощь</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>

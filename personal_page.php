@@ -29,7 +29,7 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="index.php" class="nav-link">Главная</a></li>
-            <li class="nav-item active"><a href="ztrying.php" class="nav-link">Личный кабинет</a></li>
+            <li class="nav-item active"><a href="personal_page.php" class="nav-link">Личный кабинет</a></li>
             <li class="nav-item"><a href="begin.php" class="nav-link">Начать поиск</a></li>
             <li class="nav-item"><a href="help.php" class="nav-link">Помощь</a></li>
             <li class="nav-item"><a href="contact.php" class="nav-link">Связаться с нами</a></li>
@@ -51,6 +51,9 @@
             <?php
                 require "php_extra/auth.php";
                 if (!empty($_SESSION['auth'])) {
+                  // if ($auth_res == true) {
+                  //   echo "Регистрация завершена.";
+                  // }
                     // echo '<form method="post"><input type="submit" name="logout_button" value="Выход"></form>';
                     echo '<section class="ftco-section contact-section">
                         <div class="container">
@@ -74,23 +77,30 @@
                                 <div class="col-md-8 mb-md-5">
                                     <h5 class="account">Аккаунт</h5>
                                     <p>Email: '.$_SESSION['email'].'</p>
-                                    <div class="change_class"><form method="post"><button id="change_button" name="change_button" class="custom-btn button1"><span>Сменить данные</span></button></form></div>
+                                    <div class="change_class"><form method="post" action="change_page.php"><button id="change_button" name="change_button" class="custom-btn button1"><span>Сменить пароль</span></button></form></div>
                                 </div>
                             </div>
                         </div>
                     </section>'.
                     '<div class="logout-class"><form method="post"><button id="logout_button" name="logout_button" class="custom-btn button1"><span>Выход</span></button></form></div>';
                     if (isset($_POST['logout_button'])) {
+
+                      // // session_unset();
+                      // // session_destroy();
+                      // // $_SESSION = array();
                         session_destroy();  
-                        $_SESSION['auth'] = null;
-                        // require "auth_page.php";
-                        // header("Refresh:0");
-                        header("Location: ../ztrying.php");
+                        $_SESSION['auth'] = false;
+                      //   // require "auth_page.php";
+                      //   // header("Refresh:0");
+                      //   //header("Location: personal_page.php");
+                      //   header("Location: index.php");
+
                         exit;
+                      // require "php_extra/logout.php";
                     }
-                    if (isset($_POST['change_button'])) {
-                        header("Location: change_page.php");
-                    }
+                    // if (isset($_POST['change_button'])) {
+                    //     header("Location: change_page.php");
+                    // }
                 }
                 else {
                     //header("Location: auth_page.php");
